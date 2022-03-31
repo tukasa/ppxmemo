@@ -8,6 +8,11 @@ cover_image: /bg.jpeg
 kramdown:
   hard_wrap: true
 
+# plugin
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
 # Optimize Jekyl SEO Tag
 twitter:
   username: tukasa1900
