@@ -1,0 +1,40 @@
+// Typography
+//
+// Headings, body text, lists, and other misc typographic elements.
+
+ul, ol, dl {
+  list-style: none;
+}
+
+code {
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: .1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+  color: var(--heading-color);
+}
+
+.language-plaintext {
+  font-family: "Fira Mono", "Kosugi", monospace;
+  font-size: 0.9em;
+  background-color: #F0F0F0;
+  overflow: auto;
+  margin: 2px;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.language-text {
+  font-family: "Fira Mono", "Kosugi", monospace;
+  font-size: 0.9em;
+  background-color: #F0F0F0;
+  overflow: auto;
+  display: block;
+  text-align: left;
+  padding: 3px;
+  border-radius: 10px;
+}
+

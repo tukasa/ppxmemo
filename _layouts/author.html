@@ -1,0 +1,20 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header">
+    <div class="post-title">
+      {{ page.name }}
+    </div>
+  </header>
+
+  <div class="post-content">
+    {% assign image_files = site.static_files | where: "image", true %}
+    {% for myimage in image_files %}
+      {% if myimage.basename == page.short_name %}
+        <img src="{{ site.baseurl }}{{ myimage.path  }}" class ="img-responsive">
+      {% endif %}
+    {% endfor %}
+    {{ content }}
+  </div>
+</article>

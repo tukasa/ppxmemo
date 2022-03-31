@@ -1,0 +1,36 @@
+---
+layout: default
+---
+
+<h1>{{ page.title }}</h1>
+
+{% for collection in site.collections %}
+  {% if collection.label == page.type %}
+    {% assign groups = collection.docs | group_by: "category" | sort: "title" | reverse %}
+  {% endif %}
+{% endfor %}
+
+
+<div class="taxonomies-wrapper">
+  <ul class="taxonomies">
+    {% for group in groups %}
+    <li>
+      <a class="taxonomy" href="{{ link | relative_url }}">
+          <span>{{ group.name }}</span>
+          <span class="taxonomy-count">{{ group.size }}</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% for group in groups %}
+  <h2 id="{{ group.name }}">{{ group.name }}</h2>
+  <ul class="post-list-by-taxonomy">
+  {% for item in group.items %}
+    <li>
+        <p><a href="{{ item.url | relative_url }}">{{ item.title }}</a></p>
+      <li>
+  {% endfor %}
+  </ul>
+{% endfor %}
