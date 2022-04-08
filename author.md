@@ -1,7 +1,7 @@
 ---
 layout: author
 title: Author
-img: /assets/images/tukasa.jpg
+img: /assets/images/tukasa.png
 permalink: /author/
 ---
 tukasa
