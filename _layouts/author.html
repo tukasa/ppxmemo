@@ -1,20 +1,14 @@
 ---
 layout: default
 ---
-<article class="post">
-  <header class="post-header">
-    <div class="post-title">
-      {{ page.name }}
-    </div>
-  </header>
 
-  <div class="post-content">
-    {% assign image_files = site.static_files | where: "image", true %}
-    {% for myimage in image_files %}
-      {% if myimage.basename == page.short_name %}
-        <img src="{{ site.baseurl }}{{ myimage.path  }}" class ="img-responsive">
-      {% endif %}
-    {% endfor %}
+<h1 class="page-title">{{ page.title }}</h1>
+
+<article class="author">
+  {% if page.img %}
+    <img src="{{ page.img }}" alt="プロフィール画像" class ="img-responsive author-img">
+  {% endif %}
+  <div class="author-content">
     {{ content }}
   </div>
 </article>

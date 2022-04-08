@@ -1,9 +1,9 @@
-- title: about
+- title: About
   url: /
-- title: customize
-  url: /customize/
-- title: article
-  url: /article/
+- title: Basic
+  url: /basic/
+- title: Study
+  url: /study/
 - title: Tags
   url: /tags/
 - title: Author

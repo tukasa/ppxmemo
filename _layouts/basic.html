@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<article class="post">
+<article class="basic">
   <h1 class="post-title">{{ page.title }}</h1>
   <div class="post-meta">
     {% assign date_format = site.date_format | default: "%-d %b %Y" %}
@@ -11,19 +11,16 @@ layout: default
 
   {{ content }}
 
-  {% if page.tags %}
-    {% include post-tags.html %}
-  {% endif %}
 </article>
 <div class="post-nav">
   <div>
-    {% if page.next.url %}
-    <a href="{{page.next.url}}">&laquo;&nbsp;{{page.next.title}}</a>
+    {% if page.previous.url %}
+    <a href="{{page.previous.url}}">&laquo;&nbsp;{{page.previous.title}}</a>
     {% endif %}
   </div>
   <div class="post-nav-next">
-    {% if page.previous.url %}
-    <a href="{{page.previous.url}}">{{page.previous.title}}&nbsp;&raquo;</a>
+    {% if page.next.url %}
+    <a href="{{page.next.url}}">{{page.next.title}}&nbsp;&raquo;</a>
     {% endif %}
   </div>
 </div>

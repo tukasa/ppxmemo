@@ -8,7 +8,7 @@ title: About
 
 で書いてきたPaper Plane xUI (PPx) 関連の記事のまとめ。
 
-- 2022-04-01 移転（工事中）
-- 2015-08-24 [ppxmemo](https://sites.google.com/site/ppxmemo/%E3%83%9B%E3%83%BC%E3%83%A0?authuser=0)開設
+- 2022-04-01 移転
+- 2015-08-24 開設（[旧ppxmemo](https://sites.google.com/site/ppxmemo/%E3%83%9B%E3%83%BC%E3%83%A0?authuser=0)）
 
 {% include footer.html %}

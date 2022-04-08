@@ -1,7 +1,7 @@
 ---
-title: Article
-layout: home
-permalink: /article/
+title: Study
+layout: default
+permalink: /study/
 ---
 <h1 class="page-title">{{ page.title }}</h1>
 

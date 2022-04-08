@@ -1,9 +1,12 @@
 ---
 layout: default
+title: Basic Customize
+folder: basic
+permalink: /basic/
 ---
 <h1 class="page-title">{{ page.title }}</h1>
 
-{{ content }}
+基本的なカスタマイズ
 
 {% for collection in site.collections %}
   {% if collection.label == page.folder %}
@@ -16,9 +19,9 @@ layout: default
   <ul>
   {% for item in group.items %}
     <li class="post-list-by-part">
-        <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-	<time datetime="{{ page.date | date_to_xmlschema }}">{{ item.date | date: "%Y-%m-%d" }}</time>
-      <li>
+      <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ item.date | date: "%Y-%m-%d" }}</time>
+    </li>
   {% endfor %}
   </ul>
 {% endfor %}

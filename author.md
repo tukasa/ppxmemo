@@ -1,10 +1,12 @@
 ---
-layout: page
-title: 柊つかさ
+layout: author
+title: Author
+img: /assets/images/tukasa.jpg
 permalink: /author/
 ---
+tukasa
+ほえほえ日記でPPxについて記事を書いてる人
 
-![tukasa]({{ "/assets/images/tukasa.jpg" | relative_url }}){: .img-responsive}
 
 - [つかさのほえほえ日記](http://hoehoetukasa.blogspot.com/)
 - [Memo on the Electron](https://sites.google.com/site/moesystem/)

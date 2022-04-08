@@ -9,6 +9,7 @@
 }
 
 .page,
+.basic,
 .post {
   font-family: var(--text-font);
   margin-bottom: 4em;
@@ -20,6 +21,13 @@
   li + li {
     margin-top: .25rem;
   }
+}
+
+.page {
+  ul, ol {
+    list-style: none;
+  }
+
 }
 
 // Blog post or page title
@@ -132,4 +140,19 @@
   padding: .1em .5em;
   border: 1px solid var(--border-color);
   border-radius: .5em;
+}
+
+.post-nav {
+  display: flex;
+  padding-top: var(--spacer-2);
+  padding-bottom: var(--spacer-2);
+  margin-bottom: var(--spacer-2);
+  border-top: 1px solid var(--border-color);
+}
+
+.post-nav div {
+  flex: 1 1 0;
+}
+.post-nav-next {
+  text-align: right;
 }

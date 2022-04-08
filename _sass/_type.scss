@@ -2,12 +2,23 @@
 //
 // Headings, body text, lists, and other misc typographic elements.
 
-ul, ol, dl {
-  list-style: none;
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: .1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+  color: var(--heading-color);
 }
 
-code {
+.aa {
+  font-size:12pt;
+  line-height:18px;
+  font-family: 'Mona','IPA MONAPGOTHIC','MS PGothic','ＭＳ Ｐゴシック','MS Pｺﾞｼｯｸ','MS Pゴシック',sans-serif;
+  overflow:auto;
+  white-space:nowrap;
 }
+
 
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: .1rem;
@@ -32,7 +43,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Fira Mono", "Kosugi", monospace;
   font-size: 0.9em;
   background-color: #F0F0F0;
-  color: black;
   overflow: auto;
   display: block;
   text-align: left;
@@ -40,3 +50,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 10px;
 }
 
+.emoji {
+  display: inline;
+  margin-bottom: 0px;
+}
