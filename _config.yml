@@ -57,6 +57,8 @@ defaults:
       type: "basic"
     values:
       layout: "basic"
+      parenttitle: "Basic Customize"
+      parenturl: "/basic/"
   - scope:
       path: ""
       type: "posts"

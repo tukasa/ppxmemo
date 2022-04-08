@@ -142,6 +142,28 @@
   border-radius: .5em;
 }
 
+.parent-link-section {
+  display: block;
+  padding: var(--spacer) 0;
+  color: var(--gray-600);
+  font-family: var(--body-font);
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: var(--body-bg);
+      background-color: var(--link-hover-color);
+    }
+  }
+}
+
+.parent-link {
+  padding: .1em .5em;
+}
+
 .post-nav {
   display: flex;
   padding-top: var(--spacer-2);
