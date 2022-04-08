@@ -6,7 +6,7 @@ layout: default
 
 <article class="author">
   {% if page.img %}
-    <img src="{{ page.img }}" alt="プロフィール画像" class ="img-responsive author-img">
+    <img src="{{ page.img | relative_url  }}" alt="プロフィール画像" class ="img-responsive author-img">
   {% endif %}
   <div class="author-content">
     {{ content }}
