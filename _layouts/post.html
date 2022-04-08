@@ -18,12 +18,12 @@ layout: default
 <div class="post-nav">
   <div>
     {% if page.next.url %}
-    <a href="{{page.next.url}}">&laquo;&nbsp;{{page.next.title}}</a>
+    <a href="{{page.next.url | relative_url }}">&laquo;&nbsp;{{page.next.title}}</a>
     {% endif %}
   </div>
   <div class="post-nav-next">
     {% if page.previous.url %}
-    <a href="{{page.previous.url}}">{{page.previous.title}}&nbsp;&raquo;</a>
+    <a href="{{page.previous.url | relative_url }}">{{page.previous.title}}&nbsp;&raquo;</a>
     {% endif %}
   </div>
 </div>
