@@ -3,9 +3,7 @@ title: FastCopyモード
 author: tukasa
 tag: mode
 ---
-PPxのコピー、移動、削除、ミラー処理にFastCopyを使う方法。最近v4.0.0正式版が出て、コマンドライン版のfcp.exeが追加されたのでそれを使ってみる。
-
-以下を編集して取込。
+コピー、移動、削除、ミラー処理に[FastCopy](https://fastcopy.jp/)を使う。
 
 ```text
 A_exec	= {	; エイリアス
