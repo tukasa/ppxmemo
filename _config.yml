@@ -4,9 +4,12 @@ description: about Paper Plane xUI
 avatar: /avatar.jpeg
 cover_image: /bg.jpeg
 
+highlighter: rouge
+
 # kramdown
 kramdown:
   hard_wrap: true
+  syntax_highlighter: rouge
 
 # plugin
 plugins:
