@@ -17,10 +17,11 @@ permalink: /basic/
 {% for group in groups %}
   <h2 id="{{ group.name }}">{{ group.name }}</h2>
   <ul>
-  {% for item in group.items %}
+  {% assign chapter = group.items | sort: "path" %}
+  {% for item in chapter %}
     <li class="post-list-by-part">
-      <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ item.last_modified_at }}</time>
+       <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+       <time datetime="{{ page.date | date_to_xmlschema }}">{{ item.last_modified_at }}</time>
     </li>
   {% endfor %}
   </ul>
