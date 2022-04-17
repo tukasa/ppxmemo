@@ -20,7 +20,7 @@ permalink: /basic/
   {% for item in group.items %}
     <li class="post-list-by-part">
       <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ item.date | date: "%Y-%m-%d" }}</time>
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ item.last_modified_at }}</time>
     </li>
   {% endfor %}
   </ul>
