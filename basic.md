@@ -21,7 +21,13 @@ permalink: /basic/
   {% for item in chapter %}
     <li class="post-list-by-part">
        <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-       <time datetime="{{ page.date | date_to_xmlschema }}">{{ item.last_modified_at }}</time>
+       <time datetime="{{ page.date | date_to_xmlschema }}">
+       {% if item.last_modified_at %}
+         {{ item.last_modified_at }}
+       {% else %}
+         {{ item.date | date: "%Y-%m-%d" }}
+       {% endif %}
+       </time>
     </li>
   {% endfor %}
   </ul>

@@ -2,7 +2,7 @@
 title: カスタマイズ用メニュー
 tags: カスタマイズ
 date: 2022-03-31
-last_modified_at: 2022-03-31
+last_modified_at: 
 ---
 
 PPxの初期化時、PPxフォルダにPPXDEF.CFGがあれば、それによる初期カスタマイズが自動で行われる。

@@ -2,7 +2,7 @@
 title: ファイル判別の新規作成
 tags: 基本的なカスタマイズ
 date: 2022-03-31
-last_modified_at: 2022-03-31
+last_modified_at: 
 ---
 
 ## 拡張子判別パターンの作成

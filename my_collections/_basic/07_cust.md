@@ -2,7 +2,7 @@
 title: マウスジェスチャー
 tags: 基本的なカスタマイズ
 date: 2022-03-31
-last_modified_at: 2022-03-31
+last_modified_at: 
 ---
 XC_GestとXV_dragを設定することでマウスジェスチャーが可能になる。
 

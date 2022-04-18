@@ -2,7 +2,7 @@
 title: 隠しメニュー
 tags: 基本的なカスタマイズ
 date: 2022-03-31
-last_modified_at: 2022-03-31
+last_modified_at: 
 ---
 PPc下部にある情報行に注目しよう。情報行にマウスカーソルをあわせると
 

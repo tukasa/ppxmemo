@@ -2,7 +2,7 @@
 title: カスタマイズの基本
 tags: カスタマイズ
 date: 2022-03-30
-last_modified_at: 2022-03-30
+last_modified_at: 
 ---
 
 カスタマイズの方法は主に三つ。
