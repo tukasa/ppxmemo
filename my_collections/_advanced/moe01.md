@@ -20,6 +20,7 @@ tle2comment_all.js_
 
 ```text
 {% raw %}
+KC_main    = {	; PPcメイン窓
 F6    ,*script %0Script\title2comment_all.js %: *setcust XC_cwrt= 2
 }
 
