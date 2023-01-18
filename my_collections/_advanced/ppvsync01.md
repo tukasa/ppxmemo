@@ -2,6 +2,7 @@
 title: PPv中心の連動ビュー
 part: PPv中心の連動ビュー
 date: 2023-01-13
+last_modified_at: 2023-01-19
 ---
 
 連動ビューをPPvにフォーカスを当てた状態で行う。
@@ -18,12 +19,12 @@ E_cr = { ; [Enter]用判別
 :BMP ,
 :XJS ,
 :XVBS ,
-PNG ,*ppv -popup:%N %FDC
-JPG ,*ppv -popup:%N %FDC
-JPEG ,*ppv -popup:%N %FDC
-BMP ,*ppv -popup:%N %FDC
-GIF ,*ppv -popup:%N %FDC
-TXT ,*ppv -popup:%N %FDC
+PNG ,*ppv %*name(CD,"%R","%1") -k *mapkey use,K_syncppv %%: *string i,ppcid=%%*rightstr("%n", 1)
+JPG ,*ppv %*name(CD,"%R","%1") -k *mapkey use,K_syncppv %%: *string i,ppcid=%%*rightstr("%n", 1)
+JPEG ,*ppv %*name(CD,"%R","%1") -k *mapkey use,K_syncppv %%: *string i,ppcid=%%*rightstr("%n", 1)
+BMP ,*ppv %*name(CD,"%R","%1") -k *mapkey use,K_syncppv %%: *string i,ppcid=%%*rightstr("%n", 1)
+GIF ,*ppv %*name(CD,"%R","%1") -k *mapkey use,K_syncppv %%: *string i,ppcid=%%*rightstr("%n", 1)
+TXT ,*ppv %*name(CD,"%R","%1") -k *mapkey use,K_syncppv %%: *string i,ppcid=%%*rightstr("%n", 1)
 }
 
 K_syncppv	= {
