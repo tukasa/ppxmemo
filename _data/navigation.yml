@@ -1,11 +1,9 @@
 - title: About
   url: /
-- title: Basic
+- title: 基本
   url: /basic/
-- title: Study
-  url: /study/
-- title: Tags
-  url: /tags/
+- title: 応用
+  url: /advanced/
 - title: Author
   url: /author/
 - title: Link

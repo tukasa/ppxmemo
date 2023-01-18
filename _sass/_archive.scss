@@ -27,7 +27,39 @@
   }
 }
 
+
+.categories-wrapper {
+  margin-top: var(--spacer-2);
+  margin-bottom: var(--spacer-2);
+}
+
+.categories {
+  list-style: none;
+  display: grid;
+  grid-column-gap: 2em;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+
+  .category {
+    display: flex;
+    padding: 0.25em 0;
+    justify-content: space-between;
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid;
+    margin-bottom: var(--spacer);
+  }
+}
+
+
 .post-list-by-taxonomy {
+  li {
+    display: flex;
+    justify-content: space-between;
+  }
+
   time {
     font-family: var(--code-font);
   }
@@ -36,6 +68,14 @@
 .back-to-top {
   display: block;
   font-size: 0.8em;
+  text-transform: uppercase;
+  text-align: right;
+  text-decoration: none;
+}
+
+.back-to-article-top {
+  display: block;
+  font-size: 1.0em;
   text-transform: uppercase;
   text-align: right;
   text-decoration: none;

@@ -1,0 +1,49 @@
+---
+layout: default
+---
+
+<h1 class="page-title">{{ page.title }}</h1>
+
+{% for collection in site.collections %}
+  {% if collection.label == page.folder %}
+    {% assign categories = collection.docs | group_by: "part" %}
+  {% endif %}
+{% endfor %}
+
+<div class="categories-wrapper">
+  <ul class="categories">
+    {% for category in categories %}
+     {% assign category_name = category.name %}
+     {% assign slugified_category_name = category_name | slugify %}
+       <li>
+         {% capture link %}{{ page.permalink }}#{{ category_name }}{% endcapture %}
+         <a class="category" href="{{ link | relative_url }}">
+           <span>{{ category_name }}</span>
+           <span class="category-count">{{ category.size }}</span>
+         </a>
+       </li>
+   {% endfor %}
+  </ul>
+</div>
+
+{% for category in categories %}
+  <h2 id="{{ category.name }}">{{ category.name }}</h2>
+  <ul>
+  {% assign chapter = category.items | sort: "path" %}
+  {% for item in chapter %}
+    <li class="post-list-by-part">
+       <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+       <time datetime="{{ page.date | date_to_xmlschema }}">
+       {% if item.last_modified_at %}
+         {{ item.last_modified_at }}
+       {% else %}
+         {{ item.date | date: "%Y-%m-%d" }}
+       {% endif %}
+       </time>
+    </li>
+  {% endfor %}
+  </ul>
+  <a href="#" onclick="backToTop()" class="back-to-top">Top &#8648;</a>
+{% endfor %}
+
+{% include footer.html %}

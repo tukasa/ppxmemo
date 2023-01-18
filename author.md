@@ -10,7 +10,7 @@ tukasa
 
 :cyclone:
 - [つかさのほえほえ日記](http://hoehoetukasa.blogspot.com/)
-- [Principia philosophiae tukasae](https://tukasa.github.io/philosophy/)
-- [Memo on the Electron](https://sites.google.com/site/moesystem/)
+- [つかさの哲学原理](https://tukasa.github.io/philosophy/)
+- [moe](https://tukasa.github.io/moe/)
 - [hoehoesoft](https://sites.google.com/site/hoehoesoft2/)
 - [つかさのxops日記](http://xopstukasa.blogspot.com/)
