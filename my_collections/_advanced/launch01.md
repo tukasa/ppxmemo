@@ -33,7 +33,7 @@ editor %0l_cmd.txt
 2) 以下を編集して取込。
 
 ```text
-Command = { ; ユーザコマンド・関数
+_Command = { ; ユーザコマンド・関数
 ppl = *string o,name=%*input("" -title:"PPlauncher" -mode:e -k:"*completelist /set /file:%%0l_cmd.txt") %:
  *ifmatch "o:e,a:d+",%so"name" %: *execute C,*jumppath "%so"name"" %: *stop
  *ifmatch "o:e,a:d-",%so"name" %: *execute ,"%so"name"" %: *stop
