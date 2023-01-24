@@ -1,7 +1,7 @@
 ---
 title: DockShow
 part: module
-date: 2022-03-31
+created_at: 2022-03-31
 last_modified_at: 
 ---
 DockShowは、Paper Plane xUI のウィンドウに埋め込んで使用するためのメディアプレイヤー。

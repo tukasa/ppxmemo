@@ -1,7 +1,7 @@
 ---
 title: nストロークキーの基本
 part: nストロークキー
-date: 2023-01-13
+created_at: 2023-01-13
 ---
 Paper Plane xUI Key Moduleをインストールすることで、nストロークキー入力ができるようになる。
 

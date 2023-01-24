@@ -1,7 +1,7 @@
 ---
 title: howmファイルのタイトル表示
 part: howm
-date: 2023-01-13
+created_at: 2023-01-13
 ---
 
 howm形式のファイルをタイトル表示する。howmとPPxの組み合わせについては、[moe](https://tukasa.github.io/moe/)も参照のこと。

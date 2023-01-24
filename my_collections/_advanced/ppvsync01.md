@@ -1,7 +1,7 @@
 ---
 title: PPv中心の連動ビュー
 part: PPv中心の連動ビュー
-date: 2023-01-13
+created_at: 2023-01-13
 last_modified_at: 2023-01-19
 ---
 

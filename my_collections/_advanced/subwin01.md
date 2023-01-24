@@ -1,7 +1,7 @@
 ---
 title: サブ窓によるコピーと移動
 part: サブ窓
-date: 2023-01-13
+created_at: 2023-01-13
 ---
 
 サブ窓で操作先のフォルダを選択できるようにする。
@@ -17,7 +17,8 @@ KC_main    = {
 \M ,*setcust _User:temp_exec=*file !move ,%%*extract(%n"%%%%@*8FCDN"),%%1 %%: %%K"@Q"
 	*opensubwin %FCD,移動先のフォルダを選択してください
 \C ,*setcust _User:temp_exec=*file !copy ,%%*extract(%n"%%%%@*8FCDN"),%%1 %%: %%K"@Q"
-	*opensubwin %FCD,コピー先のフォルダを選択してください}
+	*opensubwin %FCD,コピー先のフォルダを選択してください
+}
 
 K_subwin	= {
 \ENTER    ,*execute ,%si"temp_exec"

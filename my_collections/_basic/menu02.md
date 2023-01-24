@@ -1,7 +1,7 @@
 ---
 title: メニューTips
 part: メニュー
-date: 2022-03-31
+created_at: 2022-03-31
 last_modified_at: 
 ---
 ## 階層化

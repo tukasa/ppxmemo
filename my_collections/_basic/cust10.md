@@ -1,7 +1,7 @@
 ---
 title: エントリカーソル移動
 part: 基本的なカスタマイズ
-date: 2023-01-16
+created_at: 2023-01-16
 last_modified_at: 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: FastCopyモード
 part: モード
-date: 2023-01-16
+created_at: 2023-01-16
 ---
 コピー、移動、削除、ミラー処理に[FastCopy](https://fastcopy.jp/)を使う。
 

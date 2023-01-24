@@ -1,7 +1,7 @@
 ---
 title: 7-Zipモード
 part: モード
-date: 2023-01-16
+created_at: 2023-01-16
 ---
 展開、圧縮に[7-Zip](https://sevenzip.osdn.jp/)を使う。
 以下をScriptフォルダに保存。

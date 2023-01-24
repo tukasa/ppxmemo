@@ -1,7 +1,7 @@
 ---
 title: 取り込み方法の違い
 part: カスタマイズ
-date: 2022-03-31
+created_at: 2022-03-31
 last_modified_at: 
 ---
 
@@ -14,13 +14,13 @@ PPxの設定を取り込む方法には
 
 の4つがある。
 
-![alt]({{ "/assets/images/cust02.png" | relative_url }})
+![カスタマイザ]({{ "/assets/images/cust02.png" | relative_url }})
 
 このうち、「更新取込」は「PPx のバージョンアップ時の自動アップデート処理のように、既にある内容を上書きしないようにしながら新しい項目を追加する」ためのもので、あまり使うことは無いと思う。
 
 「編集して取込」とは
 
-![alt]({{ "/assets/images/cust03.png" | relative_url }})
+![編集して取込]({{ "/assets/images/cust03.png" | relative_url }})
 
 このような簡易編集できるダイアログが出て、編集しながら取り込めるもの。実際にやっている処理は「追加取込」。そして、左下のチェックを外すと、「テキストの取込」になる。
 
@@ -31,7 +31,7 @@ PPxの設定を取り込む方法には
 
 の二つの違いを知っていればとりあえずおｋということになる。
 
-## テキストの取込」と「追加取込」の違い
+## 「テキストの取込」と「追加取込」の違い
 
 - テキストの取込:既存の設定に上書きする形で取り込む
 - 追加取込:既存の設定は消さず、それに追加する形で取り込む
@@ -61,14 +61,14 @@ CopyFilePath = *cliptext %FCD
 
 と二つの設定ファイルがあるとする。ClipPath1.CFG、ClipPath2.CFGの順に、「テキストの取込」をすると
 
-![alt]({{ "/assets/images/cust04.png" | relative_url }})
+![テキストの取込]({{ "/assets/images/cust04.png" | relative_url }})
 
 
 このようにメニューが上書きされる形で取り込まれる。
 
 「追加取込」の場合、ClipPath1.CFG、ClipPath2.CFGの順に取り込みをすると
 
-![alt]({{ "/assets/images/cust05.png" | relative_url }})
+![追加取込]({{ "/assets/images/cust05.png" | relative_url }})
 
 このように既存のメニューに追加される形で取り込まれる。
 
@@ -76,7 +76,7 @@ CopyFilePath = *cliptext %FCD
 
 「テキストの取込」は、設定が追加されていったら都合が悪いものに用いる。ポップアップメニューやメニューバーあたりの、カスタマイザーのメニュータブで設定できるものですね。この場合、何も考えずに「追加取込」を繰り返していると、無駄にメニューバーの項目が増えたり、区切り線が増えたりしてしまう。
 
-![alt]({{ "/assets/images/cust06.png" | relative_url }})
+![メニューの失敗例]({{ "/assets/images/cust06.png" | relative_url }})
 
 「追加取込」は、上書きされたら都合の悪いものに用いる。例えばキーバインドとかがそうですね。新しいキーバインドを追加したくて、
 

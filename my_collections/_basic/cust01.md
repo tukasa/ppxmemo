@@ -1,7 +1,7 @@
 ---
 title: カスタマイズの基本
 part: カスタマイズ
-date: 2022-03-30
+created_at: 2022-03-30
 last_modified_at: 
 ---
 

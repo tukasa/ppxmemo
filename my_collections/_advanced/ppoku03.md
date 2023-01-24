@@ -1,7 +1,7 @@
 ---
-title: 少しだいなファイラーっぽくする
+title: 少しだいなっぽくする
 part: ○○っぽくする
-date: 2023-01-18
+created_at: 2023-01-13
 ---
 
 ![dynaっぽいPPx]({{ "/assets/images/dyna01.png" | relative_url }})

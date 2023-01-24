@@ -1,7 +1,7 @@
 ---
 title: ファイル判別の新規作成
 part: ファイル判別
-date: 2022-03-31
+created_at: 2022-03-31
 last_modified_at: 
 ---
 

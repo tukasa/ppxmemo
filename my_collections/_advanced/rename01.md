@@ -1,7 +1,7 @@
 ---
-title: Rename
-part: Rename
-date: 2023-01-20
+title: リネーム
+part: リネーム
+created_at: 2023-01-20
 ---
 
 ## 普通にリネーム

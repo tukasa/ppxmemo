@@ -1,7 +1,7 @@
 ---
 title: xdoc2txt
 part: 外部ソフト
-date: 2023-01-16
+created_at: 2023-01-16
 ---
 [xdoc2txt](http://ebstudio.info/home/xdoc2txt.html)を使い、PDFやDOCの内容をプレビュー表示する。
 

@@ -1,93 +1,42 @@
 ---
-title: EVENT
+title: RANGEEVENT
 part: EVENT
-date: 2023-01-19
-last_modified_at: 
+created_at: 2022-03-31
+last_modified_at: 2023-01-24
 ---
-色々なイベントを捉え、特定の動作をさせることができる。
-
-
-## FIRSTEVENT
-
-起動時に一度実行する。
-
-_PPxフォルダ内のkabegami.jpgを壁紙に_
+エントリカーソル移動カスタマイズで、デフォルトにない動作や、分岐など複雑なことをしたいときは、RANGEEVENTを使う。
 
 ```text
+XC_mvLR = 4,1,4,B0000,16,B0000
+
 KC_main = {
-FIRSTEVENT , *customize X_bg:Path=%0\kabegami.jpg
+RANGEEVENT1 ,*linemessage rangeevent1
+RANGEEVENT2 ,*linemessage rangeevent2
 }
 ```
 
-_PPxフォルダ内のDLLPATHフォルダにあるDLLを使用_
+こうすると、カーソル左右で範囲外移動をしたときに KC_main の RANGEEVENT1 / RANGEEVENT2 が呼び出されるようになる。
+
+## PPcからPPcに窓間移動
+
+![PPcからPPvに窓間移動]({{ "/assets/images/rangeevent01.gif" | relative_url }})
+
+二画面で反対窓にPPvを被せて表示している時用の設定。PPvが表示されていればPPvにフォーカスを。そうでなければ窓間移動をさせる。
 
 ```text
+XC_mvLR = 4,1,16,B0000,16,B0000
+
 KC_main = {
-FIRSTEVENT , *set PATH+=%0\DLLPATH
+RANGEEVENT1 ,*ifmatch %NC,%NC#L %: %K"@BS" %: *stop
+ *ifmatch 0,0%NVY %: %K"@TAB" %: *stop
+ *focus VY
+RANGEEVENT2 ,*ifmatch %NC,%NC#R %: %K"@BS" %: *stop
+ *ifmatch 0,0%NVY %: %K"@TAB" %: *stop
+ *focus VY
 }
-```
 
-_PPvを起動時最前面表示に_
-
-```text
-KV_main = {
-FIRSTEVENT,*topmostwindow %N,1
-}
-```
-
-## ACTIVEEVENT
-
-アクティブになったときに実行する。
-
-_2画面一体化型のペイン比率を一定に_
-
-```text
-KC_main = {
-ACTIVEEVENT , *pairrate 70
-}
-```
-
-## CLOSEEVENT
-
-終了時に設定を保存したい場合や、フォーカスを戻したい場合に使う。
-
-_PPv終了時にフォーカスをPPcに戻す_
-
-```text
-KV_main = {
-CLOSEEVENT,*focus C
-}
-```
-
-## LOADEVENT
-
-壁紙や背景色を変更する場合に使う。
-
-_Musicフォルダ以下にいる時はnagato.jpgに。それ以外の時はharuhi.jpgに_
-
-```text
-KC_main = {
-LOADEVENT,*ifmatch "/D:\\Music/",%1 %: *customize X_bg:Path=%0\nagato.jpg %: *stop
- *customize X_bg:Path=%0\haruhi.jpg
-}
-```
-
-_Musicフォルダ以下にいる場合は、背景色を青色に。それ以外の時は黒色に_
-
-```text
-KC_main = {
-LOADEVENT,*ifmatch "/D:\\Music/",%1 %: *customize C_back=_BLU %: *stop
- *customize C_back=_BLA
-}
-```
-
-
-## SELECTEVENT
-
-連動ビューみたいなことを外部ソフトで行いたい場合に使う。
-
-```text
-KC_main = {
-SELECTEVENT,%Obi D:\bin\MassiGra\MassiGra.exe %FCD %: *focus C
+KV_page = { ; PPvテキスト(ページ)追加設定
+LEFT ,*focus C
+RIGHT ,*focus C
 }
 ```

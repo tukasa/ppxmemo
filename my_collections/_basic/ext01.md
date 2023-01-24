@@ -1,7 +1,7 @@
 ---
 title: ファイル判別
 part: ファイル判別
-date: 2022-03-31
+created_at: 2022-03-31
 last_modified_at: 
 ---
 デフォルトでは

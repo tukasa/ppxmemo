@@ -1,58 +1,51 @@
 ---
-title: ランチャ
-part: ランチャ
-date: 2023-01-13
+title: 補完候補リストの指定
+part: 一行編集の活用
+created_at: 2023-01-25
 ---
 
-一行編集をランチャとして使う。
+![一行編集]({{ "/assets/images/launch01.png" | relative_url }})
 
-![ランチャ]({{ "/assets/images/launch01.png" | relative_url }})
+任意の補完候補リストを読み込ませて、一行編集を起動することができる。
+一行ごとにコマンドあるいはパスを記載したlaunch.txtをPPxフォルダに作成しよう。
 
-## 準備
-
-1) 以下をPPxフォルダに保存。
-
-_l_cmd.txt_
+_launch.txt_
 ```text
+git
+	add .
+	commit -m"%*input("" -title:"commit message")"
+	push
+	pull
+	status
 D:\bin
-D:\Data
+D:\data
 D:\bin\NeeView\NeeView.exe
 D:\bin\nyanfi\NyanFi.exe
-vivaldi http://toro.d.dooo.jp/slppx.html
-*cliptext (」・ω・)」つかー！ (/・ω・)/にゃーん！
-*ppb 
-*ppc ;PPcを実行
-*ppcust /edit %m編集して取込
-*ppcust
+*ppcust /edit ;編集して取込
 *reboot ;Windows を再起動
 *shutdown ;Windows をシャットダウン
-*suspend ;サスペンド状態に移行
-editor %0l_cmd.txt
+editor %0launch.txt ;編集
 ```
 
-2) 以下を編集して取込。
+以下を編集して取込。
 
 ```text
 _Command = { ; ユーザコマンド・関数
-ppl = *string o,name=%*input("" -title:"PPlauncher" -mode:e -k:"*completelist /set /file:%%0l_cmd.txt") %:
+ppl = *string o,name=%*input("" -title:"PPlauncher" -mode:h -k:"*completelist /set /file:%%0launch.txt") %:
  *ifmatch "o:e,a:d+",%so"name" %: *execute C,*jumppath "%so"name"" %: *stop
  *ifmatch "o:e,a:d-",%so"name" %: *execute ,"%so"name"" %: *stop
  *execute,%so"name"
 }
-
-K_tray = { ; PPtrayホットキー(キー指定 不可,V_xx 形式を推奨)
-^' ' ,*focus !#%*findwindowtitle("PPlauncher"),%0\PPTRAYW.EXE -c *ppl
-}
 ```
 
-3) pptrayw.exe(pptray.exe)を実行、PPTrayを常駐させる。
+3) PPTRAYW.EXEを実行、PPTrayを常駐させる。
 
 ## やり方
 
-[Ctrl+Space]を押すと、一行編集が表示される。入力内容により、
+`*ppl`で、launch.txtを補完候補リストとした一行編集が表示される。入力内容により、
 
-- フォルダ→PPCで開く
-- それ以外→コマンド実行
+- フォルダ→PPcで開く
+- それ以外→実行する
 
 と分岐する。
 

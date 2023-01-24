@@ -37,7 +37,7 @@ layout: default
        {% if item.last_modified_at %}
          {{ item.last_modified_at }}
        {% else %}
-         {{ item.date | date: "%Y-%m-%d" }}
+         {{ item.created_at | date: "%Y-%m-%d" }}
        {% endif %}
        </time>
     </li>

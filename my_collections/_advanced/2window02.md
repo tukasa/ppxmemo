@@ -1,7 +1,7 @@
 ---
 title: PPvを被せて表示
 part: 2画面
-date: 2023-01-13
+created_at: 2023-01-13
 ---
 
 PPvを一体化PPcに被せて表示する。

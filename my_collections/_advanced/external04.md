@@ -1,7 +1,7 @@
 ---
 title: 7-Zip
 part: 外部ソフト
-date: 2023-01-23
+created_at: 2023-01-23
 ---
 [7-Zip](https://sevenzip.osdn.jp)を使った圧縮や解凍ができるようにする。
 以下をScriptフォルダに保存。
@@ -9,6 +9,15 @@ date: 2023-01-23
 _wrap_7z.js_
 
 <script src="https://gist.github.com/tukasa/744d0df04bc3a95a2fc13ddff910cbaa.js"></script>
+
+
+7zのパスをエイリアスに登録しておく。
+
+```text
+A_exec	= {	; エイリアス
+7z	= "C:\Program Files\7-Zip\7z.exe"
+}
+```
 
 反対窓に展開
 
