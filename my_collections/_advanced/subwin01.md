@@ -22,7 +22,7 @@ KC_main    = {
 }
 
 K_subwin	= {
-\ENTER    ,*execute ,%si"temp_exec"
+\ENTER    ,*execute ,%*getcust(_User:temp_exec)
 }
 ```
 

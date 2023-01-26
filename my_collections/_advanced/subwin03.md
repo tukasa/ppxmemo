@@ -15,8 +15,8 @@ KC_main	= {	; PPcメイン窓
 
 E_subwin	= {
 *	,*setcust _User:temp_exec=*setcust E_scr:%T,%(%FCD %%*name(CD,"%%R","%%1")%) %%: %%K"@Q"
-	*ifmatch 0,0%*getcust(E_scr:%T) %: *opensubwin %FCD,EXEファイルを選択してください %: *stop
-	*opensubwin %*regexp("%*getcust(E_scr:%T)","h/[a-zA-Z]:\\.*\.exe/"),EXEファイルを選択してください
+	*ifmatch 0,0%*getcust(E_scr:%T) %: *opensubwin %1,EXEファイルを選択してください %: *stop
+	*opensubwin %*regexp("%*getcust(E_scr:%T)","h/([a-zA-Z]:\\.*)\.exe/$1/"),EXEファイルを選択してください
 }
 ```
 
