@@ -2,6 +2,7 @@
 title: サブ窓によるコピーと移動
 part: サブ窓
 created_at: 2023-01-13
+last_modified_at: 2023-01-27
 ---
 
 サブ窓で操作先のフォルダを選択できるようにする。
@@ -10,14 +11,14 @@ created_at: 2023-01-13
 
 ```text
 _Command	= {	; ユーザコマンド・関数
-opensubwin	= *ppc -r -bootid:x -single -k *jumppath %*arg(1) -entry %%: *fitwindow %NC,%%NC,20 %%: *mapkey use,K_subwin %%: *linemessage %*arg(2)
+opensubwin	= *ppc -r -bootid:x -single -k *jumppath %*arg(1) %%: *mapkey use,K_subwin %%: *linemessage %*arg(2)
 }
 
 KC_main    = {
 \M ,*setcust _User:temp_exec=*file !move ,%%*extract(%n"%%%%@*8FCDN"),%%1 %%: %%K"@Q"
-	*opensubwin %FCD,移動先のフォルダを選択してください
+	*opensubwin %1,移動先のフォルダを選択してください
 \C ,*setcust _User:temp_exec=*file !copy ,%%*extract(%n"%%%%@*8FCDN"),%%1 %%: %%K"@Q"
-	*opensubwin %FCD,コピー先のフォルダを選択してください
+	*opensubwin %1,コピー先のフォルダを選択してください
 }
 
 K_subwin	= {
