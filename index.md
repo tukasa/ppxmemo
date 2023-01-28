@@ -13,7 +13,7 @@ Paper Plane xUI (PPx) のカスタマイズについて
 
 ### 環境
 
-- Windows10 64bi
+- Windows10 64bit
 - PPx 64bit版
 
 ### PPx本体以外で使っているもの
