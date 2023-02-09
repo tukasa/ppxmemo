@@ -12,7 +12,7 @@ howm形式のファイルをタイトル表示する。howmとPPxの組み合わ
 
 以下をScriptフォルダに保存。
 
-tle2comment_all.js_
+_title2comment_all.js_
 
 <script src="https://gist.github.com/tukasa/c8805f8ef34cd85af659499bc0c91ae4.js"></script>
 
