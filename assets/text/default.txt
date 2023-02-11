@@ -8,6 +8,7 @@ XV_cols = { ; 表示桁数=該当拡張子、全てに一致しなければ80、
 }
 KC_main = {
 E ,%"Text edit"%Orib,editor %FDC
+H	,*ppl
 }
 _others	= {	; その他設定
 NewDir	= %*nowdatetime(Y-N-D-HMS)
@@ -16,4 +17,10 @@ shortedit	= 3
 A_exec = { ; エイリアス
 xyzzy = D:\bin\xyzzy\xyzzycli.exe
 editor = D:\bin\xyzzy\xyzzycli.exe
+}
+
+_Command	= {	; ユーザコマンド・関数
+ppl	= *string o,name=%*input("" -title:"PPlauncher" -k *completelist -set -file:%%0launch.txt -detail:"hist alias cmd user")
+	*ifmatch "o:e,a:d+",%so"name" %: *execute C,*jumppath "%so"name"" %: *stop
+	*ifmatch "o:e,a:d-",%so"name" %: *execute ,"%so"name"" %: *stop
 }
