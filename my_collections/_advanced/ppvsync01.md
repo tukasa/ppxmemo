@@ -2,7 +2,7 @@
 title: PPv中心の連動ビュー
 part: PPv中心の連動ビュー
 created_at: 2023-01-13
-last_modified_at: 2023-01-28
+last_modified_at: 2023-02-21
 ---
 
 連動ビューをPPvにフォーカスを当てた状態で行う。
@@ -30,17 +30,17 @@ HOWM ,*ppv %*name(CD,"%R","%1") -k *string i,ppcid=%%*rightstr("%n", 1)
 }
 
 KV_main	= {	; PPvメイン窓
-UP	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@UP" %: %v%*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+UP	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@UP" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
 	%K"@UP"
-DOWN	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@DOWN" % %v%*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+DOWN	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@DOWN" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
 	%K"@DOWN"
-LEFT	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@LEFT" % %v%*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+LEFT	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@LEFT" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
 	%K"@LEFT"
-RIGHT	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@RIGHT" % %v%*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+RIGHT	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@RIGHT" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
 	%K"@RIGHT"
-SPACE    ,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@SPACE" % %v%*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+SPACE    ,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@SPACE" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
 	%K"@SPACE"
-\SPACE    ,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@\SPACE" % %v%*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+\SPACE    ,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@\SPACE" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
 	%K"@\SPACE"
 }
 
