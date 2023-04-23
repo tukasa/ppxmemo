@@ -30,16 +30,28 @@ layout: default
   <h2 id="{{ category.name }}">{{ category.name }}</h2>
   <ul>
   {% assign chapter = category.items | sort: "path" %}
+  {% assign date_now = site.time | date: "%y%m" | to_integer %}
   {% for item in chapter %}
     <li class="post-list-by-part">
+     {% assign new_post = "" %}
+       {% if item.last_modified_at %}
+         {% assign date_post = item.last_modified_at | date: "%y%m" | plus: 1 %}
+       {% else %}
+         {% assign date_post = item.created_at | date: "%y%m" | plus: 1 %}
+       {% endif %}
        <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-       <time datetime="{{ page.date | date_to_xmlschema }}">
+         {% if date_post >= date_now %}
+           {% assign new_post = ":sparkles:" %}
+         {% endif %}
+       <span>{{ new_post }}
+       <time>
        {% if item.last_modified_at %}
          {{ item.last_modified_at }}
        {% else %}
          {{ item.created_at | date: "%Y-%m-%d" }}
        {% endif %}
        </time>
+       </span>
     </li>
   {% endfor %}
   </ul>
