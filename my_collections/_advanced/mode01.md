@@ -43,7 +43,7 @@ ESC	, *linecust highlight,KC_main:LOADEVENT, %: *mapkey delete,K_highlightmode %
 またキーバインドに以下が追加される。
 
 - [SPACE] カーソル位置のファイルをハイライト & [↓]
-- \[SPACE] カーソル位置のファイルをハイライト & [↓]
+- \\[SPACE] カーソル位置のファイルをハイライト & [↑]
 - [数字] ハイライト色切り替え
 - ^[S] ハイライトを00_LISTFILE.txtに保存
 - [ESC] ハイライトモード終了
