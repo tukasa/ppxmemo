@@ -2,7 +2,7 @@
 title: Script Module
 part: module
 created_at: 2022-03-31
-last_modified_at: 
+last_modified_at: 2023-06-01
 ---
 
 PPXSCR.DLL（64bit版の場合はPPXSCR64.DLL）をPPxフォルダに入れると、スクリプトを使えるようになる。
@@ -58,4 +58,13 @@ PPx.Result  = PPx.Arguments.Item(0);
 ```
 
 `echo %*script(%0\Script\arg2.js,hoge)`で、hogeを引数に取り、スクリプトを実行。指定した内容が展開される。
+
+## インラインスクリプト実行
+
+エントリーマーク数やディレクトリ種類のような、Script Moduleでしか取得できない情報は、%*jsで利用することができる。
+例えばエントリーマーク数は、以下のようにして取得できる。
+
+```text
+*linemessage %*js("PPx.result=PPx.EntryMarkCount")
+```
 
