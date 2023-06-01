@@ -6,7 +6,7 @@ last_modified_at: 2023-06-01
 ---
 ハイライトを使いやすいよう、キーバインドを一時的に変更する。また、ハイライトを保存、再現できるようにする。
 
-![highlight mode ppc]({{ "/assets/images/highlightmode.gif" | relative_url }})
+![highlight mode ppc]({{ "/assets/images/highlightmode01.png" | relative_url }})
 
 以下を編集して取込。
 
@@ -39,11 +39,12 @@ ESC	, *linecust highlight,KC_main:LOADEVENT, %: *mapkey delete,K_highlightmode %
 *linecust highlight,KC_main:LOADEVENT,*ifmatch "o:e,a:d-","00_LISTFILE.txt" %%: *markentry -set:00_LISTFILE.txt %: *mapkey use,K_highlightmode %: *string i,hlnum=1 %: *linemessage HIGHLIGHT MODE [1-7]CHANGE COLOR ^[S]SAVE [ESC]QUIT
 ```
 
-ハイライトモード時、00_LISTFILE.txtがディレクトリにあるとハイライトを自動で再現する。
-またキーバインドに以下が追加される。
+キーバインドは以下のようになる。
 
 - [SPACE] カーソル位置のファイルをハイライト & [↓]
 - \\[SPACE] カーソル位置のファイルをハイライト & [↑]
 - [数字] ハイライト色切り替え
 - ^[S] ハイライトを00_LISTFILE.txtに保存
 - [ESC] ハイライトモード終了
+
+また、00_LISTFILE.txtがディレクトリにあれば、ハイライトを自動で再現する。
