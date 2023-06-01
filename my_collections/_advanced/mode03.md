@@ -31,11 +31,9 @@ ESC	, *mapkey delete,K_7zipmode %: *linemessage 7-Zip MODE END
 *mapkey use,K_7zipmode %: *linemessage 7-Zip MODE [U]展開 [P]圧縮 [I]個別圧縮 [Esc]QUIT
 ```
 
-F1を押すと7-Zipモードになり、一時的にキーバインドが
+キーバインドは以下のようになる。
 
 - U: 7-Zipで展開
 - P: 7-Zipで圧縮
 - I: 7-Zipで個別圧縮
 - Esc: モード終了
-
-となる。
