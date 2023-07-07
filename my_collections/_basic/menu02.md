@@ -1,5 +1,5 @@
 ---
-title: メニューTips
+title: Tips
 part: メニュー
 created_at: 2022-03-31
 last_modified_at: 

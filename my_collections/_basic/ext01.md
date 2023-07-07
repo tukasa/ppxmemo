@@ -1,5 +1,5 @@
 ---
-title: ファイル判別
+title: 判別の追加
 part: ファイル判別
 created_at: 2022-03-31
 last_modified_at: 

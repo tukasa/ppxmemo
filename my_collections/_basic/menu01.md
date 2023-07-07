@@ -1,11 +1,9 @@
 ---
-title: メニュー
+title: 新規作成
 part: メニュー
 created_at: 2022-03-31
 last_modified_at: 
 ---
-
-## メニューの作成
 
 メニュータブを選択する。
 
