@@ -19,27 +19,20 @@ Rを押して行うリネーム。一つのファイルをリネームしたい�
 複数のファイルを一括リネームするときは、マークして- [LiName](https://www.vector.co.jp/soft/winnt/util/se429883.html)に投げる。好きなエディタでリネームできて便利。
 [Paper Plane xUI まとめサイト](https://w.atwiki.jp/wiki6_ppx/pages/19.html)にあるBatchRename.jsもおすすめ。
 
-## バラバラのファイル名を統一する
+## 連番
 
-![ファイル名統一]({{ "/assets/images/rename03.png" | relative_url }})
+![ファイル名統一]({{ "/assets/images/rename06.png" | relative_url }})
 
-ファイル名がバラバラなのを統一したいときは、マークしてからShift+Rを押して一括リネームする。
+ファイル名を連番にしたいときは、マークしてから[Shift+R]で一括リネームする。
 
 ```text
-s/.+\.(.+)/file\\.$1
+file\.*
 ```
 
-とすればおｋ。拡張子はそのままで、それを除いたファイル名がfile＋連番になる。
-連番の桁数やどの数値から始めるかもリネームダイアログで調整可能。
-
-## 頭に連番を付ける
-
-![連番リネーム]({{ "/assets/images/rename04.png" | relative_url }})
-
-一括リネームで、次のようにすればおｋ。マークした順番に連番を振るので、音楽ファイルの並び順を調整したいときとかに使えるかもしれない。
+コマンドの場合は以下。
 
 ```text
-s/^/\\_
+*file Rename -name:file\.*
 ```
 
 ## ダイアログでマークファイルを順次リネーム
