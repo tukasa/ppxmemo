@@ -1,46 +1,37 @@
 ---
-title: 補完候補リストの切り替え
-part: 一行編集の活用
+title: ホットキー
+part: 一行編集でランチャ
 created_at: 2023-01-25
+last_modified_at: 2023-07-10
 ---
 
-一行編集に読み込ませる補完候補ファイルは、切り替えることができる。
-コマンドを記載したcmd_list.txtと、ファイルパスを記載したpath_list.txtをPPxフォルダに作成しよう。
-
-_cmd_list.txt_
-
-```text
-*ppb
-*ppcust
-*ppcust /edit ;編集して取込
-*monitoroff
-*reboot ;Windows を再起動
-*shutdown ;Windows をシャットダウン
-```
-
-_path_list.txt_
-
-```text
-D:\bin\afxw\AFXW.EXE
-D:\bin\afxw\AFXWCFG.EXE
-D:\bin\AIMP4\AIMP.exe
-D:\bin\DialogHandler\DialogHandler.x86-64.exe
-D:\bin\dyna\Dyna.exe
-D:\bin\EasyShot\EasyShot.exe
-```
-
+PPtrayを利用することで、ホットキーを用いて一行編集を表示することができる。
 以下を編集して取込。
 
 ```text
-_Command	= {	; ユーザコマンド・関数
-changelist	= *completelist -set -file:"%*arg(1)" %: *completelist -close %: *replace ""
-	*ifmatch 0,0%*arg(1) %: *setcaption no list %: *stop
-	*setcaption %*arg(1)
+_Command = { ; ユーザコマンド・関数
+ppl = *string o,name=%*input("" -title:"PPlauncher" -mode:h -k:"*completelist /set /file:%%0launch.txt")
+  *execute,%so"name"
 }
 
-K_lied	= {
-'@'	,*RotateExecute liedlist, *changelist %%0cmd_list.txt, *changelist %%0path_list.txt,*changelist
+K_tray	= {	; PPtrayホットキー(キー指定 不可,V_xx 形式を推奨)
+V_HE5	,%0\PPTRAYW.EXE -c *ppl
 }
 ```
 
-一行編集上で[@]を押すことで、読み込ませる補完候補リストを切り替えることができる。
+PPTRAYW.EXEを実行、PPTrayを常駐させておく。
+これにより、[CapsLock]で一行編集を表示することができる。
+ちなみに、表示非表示を[CapsLock]のトグルで切り替えたい場合は以下のようになる。
+
+```text
+_Command = { ; ユーザコマンド・関数
+ppl = *string o,name=%*input("" -title:"PPlauncher" -mode:h -k:"*completelist /set /file:%%0launch.txt")
+  *execute,%so"name"
+}
+
+K_tray	= {	; PPtrayホットキー(キー指定 不可,V_xx 形式を推奨)
+V_HE5	,*focus !#%*findwindowtitle("PPlauncher"),%0PPTRAYW.EXE -c *ppl
+}
+```
+
+

@@ -1,13 +1,17 @@
 ---
-title: 補完候補リストの指定
-part: 一行編集の活用
+title: 基本
+part: 一行編集でランチャ
 created_at: 2023-01-25
+last_modified_at: 2023-07-10
 ---
 
 ![一行編集]({{ "/assets/images/launch01.png" | relative_url }})
 
-任意の補完候補リストを読み込ませて、一行編集を起動することができる。
-一行ごとにコマンドあるいはパスを記載したlaunch.txtをPPxフォルダに作成しよう。
+一行編集には、任意の補完候補ファイルを読み込ませることができる。これを応用することで、一行編集をランチャとして活用することができる。
+
+## 基本的な方法
+
+一行ごとにコマンドあるいは実行パスを記載したlaunch.txtをPPxフォルダに作成する。
 
 _launch.txt_
 ```text
@@ -17,35 +21,27 @@ git
 	push
 	pull
 	status
-D:\bin
-D:\data
-D:\bin\NeeView\NeeView.exe
-D:\bin\nyanfi\NyanFi.exe
+;<画像ビューア>; D:\bin\NeeView\NeeView.exe
+;<EXIFに基づくリネーム>; D:\bin\rexifer\Rexifer.exe
 *ppcust /edit ;編集して取込
 *reboot ;Windows を再起動
 *shutdown ;Windows をシャットダウン
+;<Script実行>; *script %*input("%R" -title:"Scriptを実行" -mode:e -select:l)
+;<ゴミ箱(dust)メニュー>; %z"#10:\",B
 editor %0launch.txt ;編集
 ```
 
-以下を編集して取込。
+以下のコマンドを実行する。
 
 ```text
-_Command = { ; ユーザコマンド・関数
-ppl = *string o,name=%*input("" -title:"PPlauncher" -mode:h -k:"*completelist /set /file:%%0launch.txt") %:
- *ifmatch "o:e,a:d+",%so"name" %: *execute C,*jumppath "%so"name"" %: *stop
- *ifmatch "o:e,a:d-",%so"name" %: *execute ,"%so"name"" %: *stop
- *execute,%so"name"
-}
+*string o,name=%*input("" -title:"PPlauncher" -mode:h -k:"*completelist /set /file:%%0launch.txt") %: *execute,%so"name"
 ```
 
-3) PPTRAYW.EXEを実行、PPTrayを常駐させる。
+## migemo
 
-## やり方
+migemoを利用することもできる。その場合は、以下のコマンドになる。
 
-`*ppl`で、launch.txtを補完候補リストとした一行編集が表示される。入力内容により、
-
-- フォルダ→PPcで開く
-- それ以外→実行する
-
-と分岐する。
+```text
+*string o,name=%*input("" -title:"PPlauncher" -mode:h -k:"*completelist /set /file:%%0launch.txt -match:6 ") %: *execute,%so"name"
+```
 
