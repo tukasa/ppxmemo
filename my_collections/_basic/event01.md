@@ -1,15 +1,20 @@
 ---
-title: EVENT
+title: FIRSTEVENT
 part: EVENT
 created_at: 2023-01-19
-last_modified_at: 
+last_modified_at: 2023-07-12
 ---
-色々なイベントを捉え、特定の動作をさせることができる。
-
-
-## FIRSTEVENT
-
 起動時に一度実行する。
+
+- 設定項目にない初期設定を行う
+- 条件に応じて初期設定を変更する
+- ユーザデータやエイリアスの初期化
+
+といった使い方がある。
+
+## ポータブル運用時の初期指定
+
+PPxをUSB等に入れて持ち歩いている場合、パスが環境によって変わるため、設定項目での設定ができない事態が生じる。これをFIRSTEVENTで解決する。
 
 _PPxフォルダ内のkabegami.jpgを壁紙に_
 
@@ -19,7 +24,7 @@ FIRSTEVENT , *customize X_bg:Path=%0\kabegami.jpg
 }
 ```
 
-_PPxフォルダ内のDLLPATHフォルダにあるDLLを使用_
+_PPxフォルダ内のDLLPATHフォルダにあるDLLを使用(ヘルプにある例)_
 
 ```text
 KC_main = {
@@ -27,67 +32,32 @@ FIRSTEVENT , *set PATH+=%0\DLLPATH
 }
 ```
 
-_PPvを起動時最前面表示に_
+## アップデートの確認
 
-```text
-KV_main = {
-FIRSTEVENT,*topmostwindow %N,1
-}
-```
-
-## ACTIVEEVENT
-
-アクティブになったときに実行する。
-
-_2画面一体化型のペイン比率を一定に_
+起動時にアップデートを確認する。以下はヘルプの例。
 
 ```text
 KC_main = {
-ACTIVEEVENT , *pairrate 70
+  FIRSTEVENT , *checkupdate ni
 }
 ```
 
-## CLOSEEVENT
+## PPtrayの起動
 
-終了時に設定を保存したい場合や、フォーカスを戻したい場合に使う。
-
-_PPv終了時にフォーカスをPPcに戻す_
-
-```text
-KV_main = {
-CLOSEEVENT,*focus C
-}
-```
-
-## LOADEVENT
-
-壁紙や背景色を変更する場合に使う。
-
-_Musicフォルダ以下にいる時はnagato.jpgに。それ以外の時はharuhi.jpgに_
+PPc起動時、PPtrayが起動してなければ起動させる。
 
 ```text
 KC_main = {
-LOADEVENT,*ifmatch "/D:\\Music/",%1 %: *customize X_bg:Path=%0\nagato.jpg %: *stop
- *customize X_bg:Path=%0\haruhi.jpg
+FIRSTEVENT , *ifmatch 0,0%NTRA %: *pptray
 }
 ```
 
-_Musicフォルダ以下にいる場合は、背景色を青色に。それ以外の時は黒色に_
+## Everythingの無効化
+
+Everything Moduleを入れていると、一行編集の動作が重くなってしまうので、これを抑制する。
 
 ```text
-KC_main = {
-LOADEVENT,*ifmatch "/D:\\Music/",%1 %: *customize C_back=_BLU %: *stop
- *customize C_back=_BLA
-}
-```
-
-
-## SELECTEVENT
-
-連動ビューみたいなことを外部ソフトで行いたい場合に使う。
-
-```text
-KC_main = {
-SELECTEVENT,%Obi D:\bin\MassiGra\MassiGra.exe %FCD %: *focus C
+K_lied	= {
+FIRSTEVENT	,*completelist -module:off
 }
 ```
