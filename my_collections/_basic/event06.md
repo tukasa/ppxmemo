@@ -31,6 +31,8 @@ COMMENTEVENT1 ,*script %0Script\excomment.js
 
 任意のフォルダで以下を実行する。
 
-`*sortentry -thispath 24,1,0,B11111,1`
+```text
+*sortentry -thispath 24,1,0,B11111,1
+```
 
 すると、COMMENTEVENT1が呼び出され、excomment.jsが実行された後に、拡張コメントを用いたソートがなされる。
