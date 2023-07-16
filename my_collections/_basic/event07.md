@@ -4,7 +4,7 @@ part: EVENT
 created_at: 2022-03-31
 last_modified_at: 2023-01-24
 ---
-エントリカーソル移動カスタマイズで、デフォルトにない動作や、分岐など複雑なことをしたいときは、RANGEEVENTを使う。
+独自の画面外等への移動動作を記述するときに使用する。
 
 ```text
 XC_mvLR = 4,1,4,B0000,16,B0000
@@ -17,7 +17,7 @@ RANGEEVENT2 ,*linemessage rangeevent2
 
 こうすると、カーソル左右で範囲外移動をしたときに KC_main の RANGEEVENT1 / RANGEEVENT2 が呼び出されるようになる。
 
-## PPcからPPcに窓間移動
+## PPcからPPvに窓間移動
 
 ![PPcからPPvに窓間移動]({{ "/assets/images/rangeevent01.gif" | relative_url }})
 
