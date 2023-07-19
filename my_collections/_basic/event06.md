@@ -2,43 +2,21 @@
 title: COMMENTEVENT
 part: EVENT
 created_at: 2023-01-15
-last_modified_at: 2023-07-14
+last_modified_at: 2023-07-20
 ---
 
-拡張コメントの内容が必要なときに使用する。拡張コメントの主な用途は以下の二つだ。
+拡張コメントの内容が必要なときに使用する。以下の場合に呼び出される。
 
-- 特殊なソート
-- エントリから取得した特殊な情報の表示
+- 拡張コメントによるソートを実行
+- 拡張コメントが含まれる表示形式に変更
 
-拡張コメントを利用する手順は、以下の通り。
-
-1. 拡張コメントを生成するスクリプトを作成
-2. COMMENTEVENTにスクリプトを登録
-3. ソートをCOMMENTEVENTに変更 or 表示形式をCOMMENTEVENTを含むものに変更
-
-COMMENTEVENTは1～10まで用意されており、それぞれを別々の用途に使うことができる。
-
-## 特殊なソート
-
-拡張コメントを用いて、EXE、TXT、CFG、ZIPを前方に。それ以外は後方に持ってくるソートをしてみよう。
-
-以下をScriptフォルダに保存。
-
-_excomment.js_
-<script src="https://gist.github.com/tukasa/a5be598bfcd5508a8942cbbbc41c9549.js"></script>
-
-以下を編集して取込。excomment.jsをCOMMENTEVENT1に登録する。
+内容には、`*comment`かスクリプトのいずれかを登録する。COMMENTEVENTは1～10まで用意されており、それぞれを別々の用途に使うことができる。
 
 ```text
 KC_main = { ; PPcメイン窓
-COMMENTEVENT1 ,*script %0Script\excomment.js
+COMMENTEVENT1 ,*comment 1,all extract,"拡張子=%%FT"
+COMMENTEVENT2 ,*script %0Script\hoge.js
 }
 ```
 
-任意のディレクトリで以下を実行。ソートを拡張コメント1にする。
-
-```text
-*sortentry -thispath 24,1,0,B11111,1
-```
-
-ソートを拡張コメント1にしたディレクトリに行くと、excomment.jsが自動で実行された後、拡張コメントを用いたソートがなされることになる。
+詳しくは[拡張コメント]({{ "/basic/other04" | relative_url }})を参照のこと。
