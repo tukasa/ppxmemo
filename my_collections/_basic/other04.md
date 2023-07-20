@@ -12,7 +12,7 @@ last_modified_at: 2023-07-20
 
 拡張コメントを利用する手順は、以下の通り。
 
-1. COMMENTEVENTに`*comment` or スクリプトを登録
+1. COMMENTEVENTに*comment or スクリプトを登録
 2. ソートをCOMMENTEVENTに変更 or 表示形式をCOMMENTEVENTを含むものに変更
 
 ## 特殊なソート
@@ -45,7 +45,7 @@ COMMENTEVENT1 ,*comment 1,all extract,"%%ME_comment1"
 *sortentry -thispath 24,1,0,B11111,1
 ```
 
-ソートを拡張コメント1にしたディレクトリに行くと、`COMMENTEVENT1`を自動で実行した後、拡張コメント1によるソートが行われる。
+ソートを拡張コメント1にしたディレクトリに行くと、COMMENTEVENT1を自動で実行した後、拡張コメント1によるソートが行われる。
 
 ### スクリプトの場合
 
@@ -68,4 +68,4 @@ COMMENTEVENT1 ,*script %0Script\excomment.js
 *sortentry -thispath 24,1,0,B11111,1
 ```
 
-ソートを拡張コメント1にしたディレクトリに行くと、`COMMENTEVENT1`を自動で実行した後、拡張コメント1によるソートが行われる。
+ソートを拡張コメント1にしたディレクトリに行くと、COMMENTEVENT1を自動で実行した後、拡張コメント1によるソートが行われる。

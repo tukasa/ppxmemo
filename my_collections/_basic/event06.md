@@ -10,7 +10,7 @@ last_modified_at: 2023-07-20
 - 拡張コメントによるソートを実行
 - 拡張コメントが含まれる表示形式に変更
 
-COMMENTEVENTには`*comment`かスクリプトを登録する。COMMENTEVENTは1～10まで用意されており、それぞれを別々の用途に使うことができる。
+COMMENTEVENTには*commentかスクリプトを登録する。COMMENTEVENTは1～10まで用意されており、それぞれを別々の用途に使うことができる。
 
 ```text
 KC_main = { ; PPcメイン窓
