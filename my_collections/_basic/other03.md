@@ -42,7 +42,7 @@ _00_INDEX.TXT_
 `*comment ,all extract`で全エントリのコメントを編集することもできる。
 
 ```text
-*comment ,all extract,"%%FT"
+*comment all extract,"%%FT"
 ```
 
 コマンドでは取得できない情報をコメントにする場合は、スクリプトを利用することになる。[howmファイルのタイトル表示]({{ "/advanced/moe01" | relative_url }})にあるtitle2comment_all.jsは、howmファイルのタイトルをコメントにするスクリプトだ。参考にしてみてほしい。
