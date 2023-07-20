@@ -15,7 +15,7 @@ last_modified_at: 2023-07-10
 
 ![一括リネーム]({{ "/assets/images/rename02.png" | relative_url }})
 
-複数のファイルを一括リネームするときは、マークして- [LiName](https://www.vector.co.jp/soft/winnt/util/se429883.html)に投げる。好きなエディタでリネームできて便利。
+複数のファイルを一括リネームするときは、マークして[LiName](https://www.vector.co.jp/soft/winnt/util/se429883.html)に投げる。好きなエディタでリネームできて便利。
 [Paper Plane xUI まとめサイト](https://w.atwiki.jp/wiki6_ppx/pages/19.html)にあるBatchRename.jsもおすすめ。
 
 ## 連番
