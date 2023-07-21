@@ -61,9 +61,18 @@ PPx.Result  = PPx.Arguments.Item(0);
 
 ## インラインスクリプト実行
 
-エントリーマーク数やディレクトリ種類のような、Script Moduleでしか取得できない情報は、%*jsで利用することができる。
-例えばエントリーマーク数は、以下のようにして取得できる。
+- *js,*js9,*jsc,*vbs
+- %*js,%*js9,%*jsc,%*vbs
 
+を使用すると、第一引数をスクリプトとして実行する。
+Script Moduleでしかできない簡単な処理をさせたり、Script Moduleでしか取得できない情報を取得したりするのに利用する。
+
+_カーソルを最初のエントリに移動_
+```text
+*js "PPx.EntryIndex = 2"
+```
+
+_エントリーマーク数を取得_
 ```text
 *linemessage %*js("PPx.result=PPx.EntryMarkCount")
 ```
