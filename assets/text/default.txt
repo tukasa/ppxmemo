@@ -1,15 +1,39 @@
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+;      基本設定 2023-07-22 tukasa
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
 X_beep = B00000000 ; Beepを発声する B00000000:全く出さない
+XC_mvUD = 0,1,4,B0000,5,B010 ; [↑][↓] ; 上下カーソルで端まできたらループ
 XV_drag = 2,1,3,0 ; ドラッグ開始ボタン スクロール,選択,窓移動,ジェスチャ(右のみ)
 XC_acsr = 0,0 ; 各コマンド終了後のカーソル位置処理
+X_rscah	= 4	; ローマ字検索キャッシュを行う最長文字数
+XV_tmod	= 0	; テキスト表示時の標準は 0:ページモード 1:キャレットモード
+XV_drag	= 0,2,3,0	; ドラッグ開始ボタン スクロール,選択,窓移動,ジェスチャ(右のみ)
+		; 0:使用しない 1:左 2:右 3:中/ホイール 4:左右同時 5:第4 6:第5
+X_term	= wt.exe	; PPbに使用するターミナル(例: wt.exe)
+X_fles	= 1	; 画面のちらつき対策を 0:しない 1:する
 XC_isea = 2,1,3,1,0 ; インクリメンタルサーチ動作 方法,位置,対象,ハイライト,ヒストリ保存
 XV_cols = { ; 表示桁数=該当拡張子、全てに一致しなければ80、0:桁数最大 -1:窓幅に合わせる
 -1 = .txt,.howm,.ini
 0 = .js,.cfg,.vbs
+C_entry	= _DWHI,_DWHI,HFFFF80,_RED,HFFC020, H8000FF,HFF8080,H80FF00,_DWHI, _SBLU,H80FF00,HFFFF80,H0000C0,H80FFFF 
+;	 エントリ状態(ファイルの背景色等)
+; メッセージ,削除,通常,不明,更新,追加, NoFocus,枠,下線,マーク,通常(偶数行),
+; 選択,区切線, ハイライト1～7, マウスカーソル下,非アクティブ
+F_mes	= -19,0,0,0,400,0,0,0,128,3,2,1,50,源真ゴシックP Regular,96	; 汎用
 }
 KC_main = {
-E ,%"Text edit"%Orib,editor %FDC
-H	,*ppl
+E ,%Obs %'xyzzy' %FCD %: *fitwindow %N,%*findwindowtitle("-xyzzy-"),20
 }
+
+K_lied	= {
+FIRSTEVENT	,*completelist -module:off
+}
+
+MV_click	= {	; PPv メイン窓
+LD_SPC	= @Q
+}
+
 _others	= {	; その他設定
 NewDir	= %*nowdatetime(Y-N-D-HMS)
 shortedit	= 3
@@ -17,10 +41,160 @@ shortedit	= 3
 A_exec = { ; エイリアス
 xyzzy = D:\bin\xyzzy\xyzzycli.exe
 editor = D:\bin\xyzzy\xyzzycli.exe
+7z	= "C:\Program Files\7-Zip\7z.exe"
+dust	= D:\work\memo\Dust
 }
 
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+;      一行編集でランチャ
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
 _Command	= {	; ユーザコマンド・関数
-ppl	= *string o,name=%*input("" -title:"PPlauncher" -k *completelist -set -file:%%0launch.txt -detail:"hist alias cmd user")
-	*ifmatch "o:e,a:d+",%so"name" %: *execute C,*jumppath "%so"name"" %: *stop
-	*ifmatch "o:e,a:d-",%so"name" %: *execute ,"%so"name"" %: *stop
+ppl	= *string o,name=%*input("" -title:"PPlauncher" -mode:h -k:"*completelist /set /file:%%0launch.txt -match:6") %: *execute,%so"name"
+}
+
+KC_main = {
+H	,*ppl
+}
+
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+;      PPv一対一対応
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+_Command	= {	; ユーザコマンド・関数
+myppv	= *ppv %*name(CD,"%R","%1") -k *string i,ppcid=%%*rightstr("%n", 1) %%: *fitwindow %N,%%N,20
+}
+
+E_cr = { ; [Enter]用判別
+:JPEG ,
+:BMP ,
+:XJS ,
+:XVBS ,
+PNG ,*myppv
+JPG ,*myppv
+JPEG ,*myppv
+BMP ,*myppv
+GIF ,*myppv
+TXT ,*myppv
+CFG ,*myppv
+HOWM ,*myppv
+}
+
+KV_main	= {	; PPvメイン窓
+ENTER    = @Q
+UP	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@UP" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+	%K"@UP"
+DOWN	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@DOWN" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+	%K"@DOWN"
+LEFT	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@LEFT" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+	%K"@LEFT"
+RIGHT	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@RIGHT" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+	%K"@RIGHT"
+SPACE    ,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@SPACE" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+	%K"@SPACE"
+\SPACE    ,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@\SPACE" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+	%K"@\SPACE"
+CLOSEEVENT    ,*ifmatch !0,0%si"ppcid" %: *focus C%si"ppcid" %: *stop
+}
+
+KV_crt	= {	; PPvテキスト(キャレット)追加設定
+UP	,%K"@UP"
+DOWN	,%K"@DOWN"
+LEFT	,%K"@LEFT"
+RIGHT	,%K"@RIGHT"
+SPACE    ,%K"@SPACE"
+\SPACE    ,%K"@\SPACE"
+}
+
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+;      サブ窓の利用
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+_Command	= {	; ユーザコマンド・関数
+opensubwin	= *ppc -r -bootid:x -single -k *jumppath %*arg(1) %%: *mapkey use,K_subwin %%: *js "PPx.EntryIndex = 2" %%: *linemessage %*arg(2)
+}
+
+KC_main    = {
+\M ,*setcust _User:temp_exec=*file !move ,%%*extract(%n"%%%%@*8FCDN"),%%1 %%: %%K"@Q"
+	*opensubwin %1,移動先のフォルダを選択してください
+\C ,*setcust _User:temp_exec=*file !copy ,%%*extract(%n"%%%%@*8FCDN"),%%1 %%: %%K"@Q"
+	*opensubwin %1,コピー先のフォルダを選択してください
+\U ,*setcust _User:temp_exec=*script %0Script\wrap_7z.js,u,%%*extract(%n"%%%%a*8FCDN"),%%1 %%: %%K"@Q"
+	 *opensubwin %FCD,展開先のフォルダを選択してください
+\P ,*setcust _User:temp_exec=*script %0Script\wrap_7z.js,p,%%*extract(%n"%%%%a*8FCDN"),%(%*input("%1%*addchar(\)|%*extract(C"%%X")|.zip" -title:"7zipで圧縮" -select:i) %: %K"@Q"%)
+	*opensubwin %FCD,圧縮先のフォルダを選択してください
+}
+
+K_subwin	= {
+\ENTER    ,*execute ,%*getcust(_User:temp_exec)
+}
+
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+;      一時コマンド
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+KC_main = {
+^Z ,*setnextkey K_launcher
+}
+
+K_launcher = {
+Z ,*setcust _User:temp_cmd = %"一時コマンド"%{%*getcust(_User:temp_cmd)%}
+^Z ,*execute ,%*getcust(_User:temp_cmd)
+}
+
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+;      moe
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+XC_cwrt	= 2	; コメントファイル作成は	0:手動 1:確認有 2:自動
+
+_Command	= {	; ユーザコマンド・関数
+todo	= *script %0Script\settitle.js,%1,%*input("[%*now(date)]- " -title:"todo" -select:l) %: *setcust _User:todo=0
+done	= *script %0\Script\Done.js
+}
+
+KC_main    = {	; PPcメイン窓
+^N ,%Ob,xyzzy -e (howm-create2dir) %1
+F6    ,*script %0Script\title2comment_all.js %: *setcust XC_cwrt= 2
+^R ,*comment "%ee%"コメントの編集"%{%*comment%|%}"
+COMMENTEVENT2 ,*script %0Script\todoSort.js
+D	,*ifmatch .howm %: *ppcfile !move,%'dust',/sameall:on /same:5 /querycreatedirectory:off %: *stop
+	%K"@D
+}
+
+KV_page	= {	; PPvテキスト(ページ)追加設定
+D ,*ifmatch %*extract(C"%%t"),howm %: *file !move,%*extract(C"%%R"),%'dust',/sameall:on /same:5 /querycreatedirectory:off %: *stop
+ %KC"@D"
+}
+
+
+MC_celS    = {    ; エントリ表示 書式([;]メニュー)
+howmtitle    = M cF25,6 w35C z7 S1 tC"y-N-D" s1
+todo	= B cF20,6 w50C u2,5 s1
+}
+
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+;      隠しメニュー
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+-|HM_ppv =
+
+HM_ppv	= {	; PPv
+T ^	, _AUTO,_DBLU = @^\NUM+
+T v	, _AUTO,_DBLU = @^\NUM-
+TopW	, _AUTO,_DBLU , *topmostwindow %N
+pppv	, _AUTO,_DBLU , *RotateCustomize _others:pppv,1,0 %: %K"loadcust"
+}
+
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+;      zoxide
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+KC_main = {
+LOADEVENT ,*ifmatch "o:e,!a:a",%1 %: %Obcd zoxide add "%1"
+'@'	,%Oq *run -noppb -pos:%*windowrect(,l),%*windowrect(,t) nyagos -f %0jumppath.lua %0%/
+}
+
+Mes0411	= {
+EXEF	= 
 }
