@@ -195,3 +195,12 @@ LOADEVENT ,*ifmatch "o:e,!a:a",%1 %: %Obcd zoxide add "%1"
 Mes0411	= {
 EXEF	= 
 }
+
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+;      マークの有無でCtrl+Wの検索対象を変化
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+KC_main	= {	; PPcメイン窓
+^W	,*if %*js("PPx.result=PPx.EntryMarkCount") %: *where -marked:on %: *stop
+	*where"
+}
