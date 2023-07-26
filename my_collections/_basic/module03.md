@@ -36,7 +36,7 @@ _arg.js_
 // 引数がなければ終了
 if (PPx.Arguments.Length < 2){
   PPx.SetPopLineMessage("引数が正しくありません。");
-  PPx.Quit(-1);
+  PPx.Quit();
 }
 
 PPx.Echo("第一引数は"+PPx.Arguments.Item(0)+"です。\n第二引数は"+PPx.Arguments.Item(1)+"です。");
@@ -51,7 +51,7 @@ _arg2.js_
 // 引数がなければ終了
 if (PPx.Arguments.Length < 1){
   PPx.SetPopLineMessage("引数が正しくありません。");
-  PPx.Quit(-1);
+  PPx.Quit();
 }
 
 PPx.Result  = PPx.Arguments.Item(0);
