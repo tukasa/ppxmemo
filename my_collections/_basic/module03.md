@@ -15,7 +15,7 @@ _hoge.js_
 PPx.Echo("Hello World");
 ```
 
-`*script %0\Script\hoge.js`で実行できる。
+`*script %0Script\hoge.js`で実行できる。
 
 ## 指定した内容を展開
 
@@ -25,7 +25,7 @@ _fuga.js_
 PPx.Result = PPx.Extract("%1");
 ```
 
-`echo %*script(%0\Script\fuga.js)`で、PPx.Result に指定した内容を展開できる。
+`echo %*script(%0Script\fuga.js)`で、PPx.Result に指定した内容を展開できる。
 
 ## 引数
 
@@ -42,7 +42,7 @@ if (PPx.Arguments.Length < 2){
 PPx.Echo("第一引数は"+PPx.Arguments.Item(0)+"です。\n第二引数は"+PPx.Arguments.Item(1)+"です。");
 ```
 
-`*script %0\Script\arg.js,hoge,fuga`で、hogeとfugaを引数に取り、スクリプトを実行する。
+`*script %0Script\arg.js,hoge,fuga`で、hogeとfugaを引数に取り、スクリプトを実行する。
 
 _arg2.js_
 ```text
@@ -57,7 +57,7 @@ if (PPx.Arguments.Length < 1){
 PPx.Result  = PPx.Arguments.Item(0);
 ```
 
-`echo %*script(%0\Script\arg2.js,hoge)`で、hogeを引数に取り、スクリプトを実行。指定した内容が展開される。
+`echo %*script(%0Script\arg2.js,hoge)`で、hogeを引数に取り、スクリプトを実行。指定した内容が展開される。
 
 ## インラインスクリプト実行
 
