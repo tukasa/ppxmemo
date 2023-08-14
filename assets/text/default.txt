@@ -48,14 +48,7 @@ dust	= D:\work\memo\Dust
 ; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 
 _Command	= {	; ユーザコマンド・関数
-ppl	= *string o,name=%*input("" -title:"PPlauncher Auto:on" -mode:g -leavecancel -k:"*completelist /set /file:%%0launch.txt -match:6 -detail:""hist user"" %%: *mapkey use,K_pplaunch") %: *execute,%so"name"
-}
-
-K_pplaunch = {
-ENTER	,*ifmatch -1,%*sendmessage(%N-L,392,0,0) %: %K"@DOWN @ENTER" %: *stop
-	%K"@ENTER"
-'@'	,*mapkey delete,K_pplaunch %: *setcaption PPlauncher Auto:off
-^V	,*mapkey delete,K_pplaunch %: *setcaption PPlauncher Auto:off %: %K"@^V"
+ppl	= *string o,name=%*input("" -title:"PPlauncher" -mode:g -leavecancel -k:"*completelist /set /file:%%0launch.txt -match:6 -detail:""hist user"" ") %: *execute,%so"name"
 }
 
 KC_main = {
@@ -67,7 +60,7 @@ H	,*ppl
 ; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 
 _Command	= {	; ユーザコマンド・関数
-myppv	= *ppv %*name(CD,"%R","%1") -k *string i,ppcid=%%*rightstr("%n", 1) %%: *fitwindow %N,%%N,20
+myppv	= *ppv %*name(CD,"%R","%1") -k *string i,ppcid=%%*rightstr("%n", 1) %%: *fitwindow %N,%%N,20 %%: *fitwindow %N,%%N,30
 }
 
 E_cr = { ; [Enter]用判別
@@ -116,7 +109,7 @@ SPACE    ,%K"@SPACE"
 ; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 
 _Command	= {	; ユーザコマンド・関数
-opensubwin	= *ppc -r -bootid:x -single -k *jumppath %*arg(1) %%: *mapkey use,K_subwin %%: *js "PPx.EntryIndex = 2" %%: *linemessage %*arg(2)
+opensubwin	= *ppc -r -bootid:x -single -k *jumppath %*arg(1) %%: *fitwindow %NC,%%NC,20 %%: *mapkey use,K_subwin %%: *js "PPx.EntryIndex = 2" %%: *linemessage %*arg(2)
 }
 
 KC_main    = {
@@ -211,4 +204,98 @@ EXEF	=
 KC_main	= {	; PPcメイン窓
 ^W	,*if %*js("PPx.result=PPx.EntryMarkCount") %: *where -marked:on %: *stop
 	*where"
+}
+
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+;      一行編集で音楽ファイル検索
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+_Command	= {
+musicsearch	= *ifmatch 0,0%*getcust(_User:musicplayer) %: *setcust _User:musicplayer=%*input("D:\bin\AIMP5\AIMP.exe" -title:"音楽プレイヤーのパスを入力してください" -mode:e)
+	*string o,name=%*input("" -title:"musicplayer - %*getcust(_User:musicplayer)" -mode:e -k:"*completelist /set /file:%%0data\\musicpath -match:6  %%: *mapkey use,K_musicplayer")
+	*ifmatch !0,0%so"name" %: *launch %*getcust(_User:musicplayer) %so"name"
+}
+
+-|K_musicplayer=
+
+K_musicplayer = {
+ENTER	,*ifmatch -1,%*sendmessage(%N-L,392,0,0) %: %K"@DOWN @ENTER" %: *stop
+	%K"@ENTER"
+^O	,%M_musicplayer,P
+^P	,%M_musicplayer,!START/STOP
+LEFT	,*ifmatch !-1,%*sendmessage(%N-L,392,0,0) %: *replace %*name(D,%*edittext) %: %K"@^\A" %: *stop
+	%K"@LEFT"
+}
+
+-|M_musicplayer=
+
+M_musicplayer	= {
+Playerの変更	=*setcust _User:musicplayer=%{%*getcust(_User:musicplayer)%|%} %: *setcaption musicplayer - %*getcust(_User:musicplayer)
+AIMP5	=*setcust _User:musicplayer=D:\bin\AIMP5\AIMP.exe %: *setcaption musicplayer - %*getcust(_User:musicplayer)
+AIMP5に追加	=*setcust _User:musicplayer=D:\bin\AIMP5\AIMP.exe /INSERT %: *setcaption musicplayer - %*getcust(_User:musicplayer)
+--	= 
+START/STOP	=D:\bin\AIMP5\AIMP.exe /PLAYPAUSE
+--	= 
+SCAN	=*whereis -mask1:"a:d+;.mp3;.flac" -path:"D:\Data\Music" -dir:on -subdir:on -listfile:%0data\musicpath -name
+}
+
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+;      一行編集で漫画ファイル検索
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+_Command	= {
+mangasearch	= *string o,name=%*input("" -title:"mangasearch" -mode:e -k:"*completelist /set /file:%%0data\\mangapath -match:6 %%: *mapkey use,K_mangasearch")
+	*ifmatch !0,0%so"name" %: *launch D:\bin\NeeView\NeeView.exe -n -o %*regexp("%so"name"","s/\\$//")
+}
+
+-|K_mangasearch=
+
+K_mangasearch = {
+ENTER	,*ifmatch -1,%*sendmessage(%N-L,392,0,0) %: %K"@DOWN @ENTER" %: *stop
+	%K"@ENTER"
+}
+
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+;      PPv起動用PPc
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+K_forppv    = {
+ENTER    ,*ifmatch "o:e,a:d+","%*name(CD,"%R","%1")" %: %K"@ENTER" %: *stop
+    *if %*js("PPx.result=PPx.SyncView") %: %Oi *windowsize %si"ppvid",%*windowrect(,w),%*calc("%*windowrect(,h)*2") %: *closeppx %n %: *stop
+    %Oi *ppv %*name(CD,"%R","%1") -k *fitwindow %N,%%N,20 %%: *closeppx %n
+\Y    ,*if %*js("PPx.result=PPx.SyncView") %: *ppvoption sync off %: *stop
+    %Oi *ppv -k *setcust _User:id=%%*rightstr("%%n", 1) %: *fitwindow %N,%NV%*getcust(_User:id),30 %: *string i,ppvid=%NV%*getcust(_User:id) %: *ppvoption sync %*getcust(_User:id) %: *fitwindow %N,%NV%*getcust(_User:id),3
+Q    ,*ppvoption sync off %: *closeppx %n
+}
+
+KV_main    = {    ; PPvメイン窓
+O    ,%Oi *string i,ppcid=
+ *windowsize %N,%*windowrect(,w),%*calc("%*windowrect(,h)/2")
+ *ppc -r -bootid:v -single -k *jumppath %FD -entry:%FC %%: *string i,ppvid=%N %%: *mapkey use,K_forppv %%: *ppvoption sync %*rightstr("%n", 1)
+ *fitwindow %N,%NCV,4
+}
+
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+;      ハイライトモード
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+-|K_highlightmode =
+
+K_highlightmode = {
+SPACE	,*if !%si"hlnum" %: %K"@SPACE" %: *stop
+	*if %*js("PPx.result=PPx.EntryHighlight") %: *markentry -highlight:0 path:,%R %: %K"@DOWN" %: *stop
+	*markentry -highlight:%si"hlnum" path:,%R %: %K"@DOWN"
+\SPACE	,*if !%si"hlnum" %: %K"@\SPACE" %: *stop
+	*if %*js("PPx.result=PPx.EntryHighlight") %: *markentry -highlight:0 path:,%R %: %K"@UP" %: *stop
+	*markentry -highlight:%si"hlnum" path:,%R %: %K"@UP"
+^S	, *makelistfile 00_LISTFILE.txt -basic -highlight %: *linemessage ハイライトを保存しました
+ESC	, *linecust highlight,KC_main:LOADEVENT, %: *mapkey delete,K_highlightmode %: *linemessage HIGHLIGHT MODE END
+0	, *linemessage ファイルマークに変更しました %: *string i,hlnum=0
+1	, *linemessage ハイライト1に変更しました %: *string i,hlnum=1
+2	, *linemessage ハイライト2に変更しました %: *string i,hlnum=2
+3	, *linemessage ハイライト3に変更しました %: *string i,hlnum=3
+4	, *linemessage ハイライト4に変更しました %: *string i,hlnum=4
+5	, *linemessage ハイライト5に変更しました %: *string i,hlnum=5
+6	, *linemessage ハイライト6に変更しました %: *string i,hlnum=6
+7	, *linemessage ハイライト7に変更しました %: *string i,hlnum=7
 }

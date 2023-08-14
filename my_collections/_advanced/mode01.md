@@ -15,11 +15,11 @@ last_modified_at: 2023-06-01
 
 K_highlightmode = {
 SPACE	,*if !%si"hlnum" %: %K"@SPACE" %: *stop
-	*if %*js("PPx.result=PPx.EntryHighlight") %: *markentry -highlight:0 %R %: %K"@DOWN" %: *stop
-	*markentry -highlight:%si"hlnum" %R %: %K"@DOWN"
+	*if %*js("PPx.result=PPx.EntryHighlight") %: *markentry -highlight:0 path:,%R %: %K"@DOWN" %: *stop
+	*markentry -highlight:%si"hlnum" path:,%R %: %K"@DOWN"
 \SPACE	,*if !%si"hlnum" %: %K"@\SPACE" %: *stop
-	*if %*js("PPx.result=PPx.EntryHighlight") %: *markentry -highlight:0 %R %: %K"@UP" %: *stop
-	*markentry -highlight:%si"hlnum" %R %: %K"@UP"
+	*if %*js("PPx.result=PPx.EntryHighlight") %: *markentry -highlight:0 path:,%R %: %K"@UP" %: *stop
+	*markentry -highlight:%si"hlnum" path:,%R %: %K"@UP"
 ^S	, *makelistfile 00_LISTFILE.txt -basic -highlight %: *linemessage ハイライトを保存しました
 ESC	, *linecust highlight,KC_main:LOADEVENT, %: *mapkey delete,K_highlightmode %: *linemessage HIGHLIGHT MODE END
 0	, *linemessage ファイルマークに変更しました %: *string i,hlnum=0

@@ -2,7 +2,7 @@
 title: カスタマイズ用メニュー
 part: カスタマイズ
 created_at: 2022-03-31
-last_modified_at: 2023-01-25
+last_modified_at: 2023-08-04
 ---
 
 PPxの初期化時、PPxフォルダにPPXDEF.CFGがあれば、それによる初期カスタマイズが自動で行われる。
@@ -29,8 +29,8 @@ PPX.CFGに書き出し = %OB *PPCUST CD %0\PPX.CFG
 設定を一時保存して初期化 =  %OBs *PPCUST CD %0\QUICKSAVE.CFG %: *PPCUST CINIT
 一時保存した設定に戻す(&R) =  %OBs *PPCUST CINIT %: *PPCUST CS %0\QUICKSAVE.CFG
 -- =
-ディレクトリ別設定を取り込み = %OB *PPCUST CS %0\DIROPTION.CFG
-ディレクトリ別設定を書き出し = %OB *PPCUST CD %0\DIROPTION.CFG -mask:XC_dset
+ディレクトリ別設定等を取り込み = %OB *PPCUST CS %0\DIROPTION.CFG
+ディレクトリ別設定等を書き出し = %OB *PPCUST CD %0\DIROPTION.CFG -mask:XC_dset,C_entry,F_mes
 -- =
 アップデート(&U) = %OB *checkupdate p
 バージョン情報(&V) = %K"@ABOUT"

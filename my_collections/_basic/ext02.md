@@ -32,7 +32,7 @@ last_modified_at: 2023-07-22
 という書式で記載する。
 
 ```text
-E_test    = {    ; PPcメイン窓
+E_test    = {
 *	,editor %FCD
 .	,editor %FCD
 :DIR	= C_DIR
