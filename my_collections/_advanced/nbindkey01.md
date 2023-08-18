@@ -1,5 +1,5 @@
 ---
-title: nストロークキーの基本
+title: Key Module
 part: nストロークキー
 created_at: 2023-01-13
 ---

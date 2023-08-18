@@ -1,8 +1,8 @@
 ---
 title: ホットキー
-part: 一行編集でランチャ
+part: 一行編集
 created_at: 2023-01-25
-last_modified_at: 2023-07-10
+last_modified_at: 2023-08-19
 ---
 
 PPtrayを利用することで、ホットキーを用いて一行編集を表示することができる。
@@ -10,7 +10,7 @@ PPtrayを利用することで、ホットキーを用いて一行編集を表�
 
 ```text
 _Command = { ; ユーザコマンド・関数
-ppl = *string o,name=%*input("" -title:"PPlauncher" -mode:h -k:"*completelist /set /file:%%0launch.txt")
+ppl = *string o,name=%*input("" -title:"PPlauncher" -mode:h -leavecancel -k:"*completelist /set /file:%%0launch.txt")
   *execute,%so"name"
 }
 
@@ -25,7 +25,7 @@ PPTRAYW.EXEを実行、PPTrayを常駐させておく。
 
 ```text
 _Command = { ; ユーザコマンド・関数
-ppl = *string o,name=%*input("" -title:"PPlauncher" -mode:h -k:"*completelist /set /file:%%0launch.txt")
+ppl = *string o,name=%*input("" -title:"PPlauncher" -mode:h -leavecancel -k:"*completelist /set /file:%%0launch.txt")
   *execute,%so"name"
 }
 

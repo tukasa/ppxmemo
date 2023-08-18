@@ -1,5 +1,5 @@
 ; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
-;      基本設定 2023-07-24 tukasa
+;      基本設定 2023-08-17 tukasa
 ; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 
 X_beep = B00000000 ; Beepを全く出さない
@@ -60,7 +60,7 @@ H	,*ppl
 ; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 
 _Command	= {	; ユーザコマンド・関数
-myppv	= *ppv %*name(CD,"%R","%1") -k *string i,ppcid=%%*rightstr("%n", 1) %%: *fitwindow %N,%%N,20 %%: *fitwindow %N,%%N,30
+myppv	= *ppv %*name(CD,"%R","%1") -k *string i,ppcid=%%*rightstr("%n", 1) %%: *fitwindow %N,%%N,20 %%: *fitwindow %N,%%N,30 %: *wait 300,2
 }
 
 E_cr = { ; [Enter]用判別
@@ -223,6 +223,7 @@ ENTER	,*ifmatch -1,%*sendmessage(%N-L,392,0,0) %: %K"@DOWN @ENTER" %: *stop
 	%K"@ENTER"
 ^O	,%M_musicplayer,P
 ^P	,%M_musicplayer,!START/STOP
+^S	,*linemessage スキャン開始 %: *whereis -mask1:"a:d+;.mp3;.flac" -path:"D:\Data\Music" -dir:on -subdir:on -listfile:%0data\musicpath -name
 LEFT	,*ifmatch !-1,%*sendmessage(%N-L,392,0,0) %: *replace %*name(D,%*edittext) %: %K"@^\A" %: *stop
 	%K"@LEFT"
 }
@@ -244,15 +245,32 @@ SCAN	=*whereis -mask1:"a:d+;.mp3;.flac" -path:"D:\Data\Music" -dir:on -subdir:on
 ; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 
 _Command	= {
-mangasearch	= *string o,name=%*input("" -title:"mangasearch" -mode:e -k:"*completelist /set /file:%%0data\\mangapath -match:6 %%: *mapkey use,K_mangasearch")
+mangasearch	= *string o,name=%*input("" -title:"漫画ファイルを検索" -mode:e -k:"*completelist /set /file:%%0data\\mangapath -match:6 %%: *mapkey use,K_mangasearch")
 	*ifmatch !0,0%so"name" %: *launch D:\bin\NeeView\NeeView.exe -n -o %*regexp("%so"name"","s/\\$//")
 }
 
 -|K_mangasearch=
 
-K_mangasearch = {
+K_mangasearch	= {
 ENTER	,*ifmatch -1,%*sendmessage(%N-L,392,0,0) %: %K"@DOWN @ENTER" %: *stop
 	%K"@ENTER"
+^S	,*linemessage スキャン開始 %: *whereis -mask1:"a:d+" -path:"D:\Data\mangaZip" -dir:on -subdir:on -listfile:%0data\mangapath -name
+}
+
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+;      一行編集で実行ファイル検索
+; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+_Command	= {
+exesearch	= *string o,name=%*input("" -title:"実行ファイルを検索" -mode:g -leavecancel -k:"*completelist /set /file:%%0data\execpath -match:6 -detail:""user"" %%: *mapkey use,K_exesearch") %: *execute,%so"name"
+}
+
+-|K_exesearch=
+
+K_exesearch = {
+ENTER	,*ifmatch -1,%*sendmessage(%N-L,392,0,0) %: %K"@DOWN @ENTER" %: *stop
+	%K"@ENTER"
+^S	,*linemessage スキャン開始 %: *whereis -mask1:".exe" -path:"D:\bin" -dir:on -subdir:on -listfile:%0data\execpath -name
 }
 
 ; _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
