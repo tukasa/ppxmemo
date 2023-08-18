@@ -2,7 +2,7 @@
 title: 一対一対応
 part: PPv中心の連動ビュー
 created_at: 2023-01-13
-last_modified_at: 2023-06-01
+last_modified_at: 2023-08-19
 ---
 
 複数のPPcを開いている際、基本編だと意図しない動作になることがある。そこで、PPcとPPvを一対一対応させ、以下のように動作させる。
@@ -19,19 +19,23 @@ last_modified_at: 2023-06-01
 以下を編集して取込。
 
 ```text
+_Command	= {	; ユーザコマンド・関数
+myppv	= *ppv %*name(CD,"%R","%1") -k *string i,ppcid=%%*rightstr("%n", 1)
+}
+
 E_cr = { ; [Enter]用判別
 :JPEG ,
 :BMP ,
 :XJS ,
 :XVBS ,
-PNG ,*ppv %*name(CD,"%R","%1") -k *string i,ppcid=%%*rightstr("%n", 1) %%: *fitwindow %N,%%N,20
-JPG ,*ppv %*name(CD,"%R","%1") -k *string i,ppcid=%%*rightstr("%n", 1) %%: *fitwindow %N,%%N,20
-JPEG ,*ppv %*name(CD,"%R","%1") -k *string i,ppcid=%%*rightstr("%n", 1) %%: *fitwindow %N,%%N,20
-BMP ,*ppv %*name(CD,"%R","%1") -k *string i,ppcid=%%*rightstr("%n", 1) %%: *fitwindow %N,%%N,20
-GIF ,*ppv %*name(CD,"%R","%1") -k *string i,ppcid=%%*rightstr("%n", 1) %%: *fitwindow %N,%%N,20
-TXT ,*ppv %*name(CD,"%R","%1") -k *string i,ppcid=%%*rightstr("%n", 1) %%: *fitwindow %N,%%N,20
-CFG ,*ppv %*name(CD,"%R","%1") -k *string i,ppcid=%%*rightstr("%n", 1) %%: *fitwindow %N,%%N,20
-HOWM ,*ppv %*name(CD,"%R","%1") -k *string i,ppcid=%%*rightstr("%n", 1) %%: *fitwindow %N,%%N,20
+PNG ,*myppv
+JPG ,*myppv
+JPEG ,*myppv
+BMP ,*myppv
+GIF ,*myppv
+TXT ,*myppv
+CFG ,*myppv
+HOWM ,*myppv
 }
 
 KV_main	= {	; PPvメイン窓

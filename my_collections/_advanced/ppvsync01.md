@@ -2,7 +2,7 @@
 title: 基本編
 part: PPv中心の連動ビュー
 created_at: 2023-01-13
-last_modified_at: 2023-06-01
+last_modified_at: 2023-08-19
 ---
 
 連動ビューをPPvにフォーカスを当てた状態で行う。
@@ -14,19 +14,23 @@ last_modified_at: 2023-06-01
 以下を編集して取込。
 
 ```text
+_Command	= {	; ユーザコマンド・関数
+myppv	= *ppv %*name(CD,"%R","%1")
+}
+
 E_cr = { ; [Enter]用判別
 :JPEG ,
 :BMP ,
 :XJS ,
 :XVBS ,
-PNG ,*ppv %*name(CD,"%R","%1")
-JPG ,*ppv %*name(CD,"%R","%1")
-JPEG ,*ppv %*name(CD,"%R","%1")
-BMP ,*ppv %*name(CD,"%R","%1")
-GIF ,*ppv %*name(CD,"%R","%1")
-TXT ,*ppv %*name(CD,"%R","%1")
-CFG ,*ppv %*name(CD,"%R","%1")
-HOWM ,*ppv %*name(CD,"%R","%1")
+PNG ,*myppv
+JPG ,*myppv
+JPEG ,*myppv
+BMP ,*myppv
+GIF ,*myppv
+TXT ,*myppv
+CFG ,*myppv
+HOWM ,*myppv
 }
 
 KV_main	= {	; PPvメイン窓
