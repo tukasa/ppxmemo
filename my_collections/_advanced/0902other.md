@@ -1,6 +1,6 @@
 ---
 title: リネーム
-part: リネーム
+part: その他
 created_at: 2023-01-20
 last_modified_at: 2023-07-10
 ---

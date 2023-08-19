@@ -1,6 +1,6 @@
 ---
 title: 2画面
-part: 2画面
+part: その他
 created_at: 2023-01-13
 last_modified_at: 2023-08-19
 ---
@@ -38,7 +38,7 @@ SETUP.EXEを実行して「次へ」をクリックしていくと、途中で�
 
 ## CFGファイルの取込
 
-以下を編集して取込。これは[TORO's Data library(Configuration file)](http://toro.d.dooo.jp/dlcfg.html)に記載されている設定。
+以下を編集して取込。これは[Configuration file & Memo](http://toro.d.dooo.jp/dlcfg.html)に記載されている設定。
 
 ```text
 X_combo	= 1 ; 一体化窓有効
