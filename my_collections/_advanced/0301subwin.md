@@ -1,17 +1,25 @@
 ---
-title: サブ窓によるコピーと移動
+title: コピー・移動
 part: サブ窓
 created_at: 2023-01-13
-last_modified_at: 2023-01-27
+last_modified_at: 2023-08-23
 ---
 
-サブ窓で操作先のフォルダを選択できるようにする。
+コピー先・移動先のフォルダをサブ窓を使って指定できるようにする。
+
+![サブ窓による移動]({{ "/assets/images/subwin01.gif" | relative_url }})
 
 ## 準備
+
+以下を編集して取込。
 
 ```text
 _Command	= {	; ユーザコマンド・関数
 opensubwin	= *ppc -r -bootid:x -single -k *jumppath %*arg(1) %%: *mapkey use,K_subwin %%: *linemessage %*arg(2)
+}
+
+K_subwin	= {
+\ENTER    ,*execute ,%*getcust(_User:temp_exec)
 }
 
 KC_main    = {
@@ -20,19 +28,22 @@ KC_main    = {
 \C ,*setcust _User:temp_exec=*file !copy ,%%*extract(%n"%%%%@*8FCDN"),%%1 %%: %%K"@Q"
 	*opensubwin %1,コピー先のフォルダを選択してください
 }
-
-K_subwin	= {
-\ENTER    ,*execute ,%*getcust(_User:temp_exec)
-}
 ```
 
 ## やり方
 
-例えばaaa.txtをhogehogeフォルダに移動したい場合、以下の動作になる。
+キーバインドは以下の通り。
 
+- Shift+C : コピー
+- Shift+M : 移動
 
-- aaa.txtにカーソルを置く or マークする。
-- [Shift+M]を押すと、サブ窓PPc[X]が起動する。
-- サブ窓PPc[X]でhogehogeフォルダへ移動して、[Shift+Enter]を押す。
+例えばaaa.txtをhogehogeフォルダに移動したい場合は、以下のようになる。
 
-![サブ窓による移動]({{ "/assets/images/subwin01.gif" | relative_url }})
+aaa.txtにカーソルを置く or マークする。
+
+![操作対象にカーソル]({{ "/assets/images/subwin02.png" | relative_url }})
+
+Shift+MでPPc[X]が起動するので、hogehogeフォルダへ移動してShift+Enter。
+
+![PPCXが起動]({{ "/assets/images/subwin03.png" | relative_url }})
+

@@ -1,36 +1,53 @@
 ---
-title: 7-ZIP
+title: 展開・圧縮
 part: サブ窓
 created_at: 2023-01-13
-last_modified_at: 2023-01-24
+last_modified_at: 2023-08-23
 ---
 
-7-ZIPを使い、解凍や圧縮をする。
-以下をScriptフォルダに保存。
+展開・圧縮をサブ窓を使ってできるようにする。
 
-_wrap_7z.js_
-<script src="https://gist.github.com/tukasa/744d0df04bc3a95a2fc13ddff910cbaa.js"></script>
+## 準備
 
 以下を編集して取込。
 
-```text
-A_exec	= {	; エイリアス
-7z	= "C:\Program Files\7-Zip\7z.exe"
+```text{% raw %}
+_Command	= {	; ユーザコマンド・関数
+opensubwin	= *ppc -r -bootid:x -single -k *jumppath %*arg(1) %%: *mapkey use,K_subwin %%: *linemessage %*arg(2)
+}
+
+K_subwin	= {
+\ENTER    ,*execute ,%*getcust(_User:temp_exec)
 }
 
 KC_main    = {
-\U ,*setcust _User:temp_exec=*script %0Script\wrap_7z.js,u,%%*extract(%n"%%%%a*8FCDN"),%%1 %%: %%K"@Q"
-	 *opensubwin %FCD,展開先のフォルダを選択してください
-\P ,*setcust _User:temp_exec=*script %0Script\wrap_7z.js,p,%%*extract(%n"%%%%a*8FCDN"),%(%*input("%1%*addchar(\)|%*extract(C"%%X")|.zip" -title:"7zipで圧縮" -select:i) %: %K"@Q"%)
-	*opensubwin %FCD,圧縮先のフォルダを選択してください
-\I ,*setcust _User:temp_exec=*script %0Script\wrap_7z.js,ip,%%*extract(%n"%%%%a*8FCDN"),%%1 %%: %%K"@Q"
-	 *opensubwin %FCD,個別圧縮先のフォルダを選択してください
-}
+\U ,*setcust _User:temp_exec=*execute %n,*unpack %%1 %%: %%K"@Q"
+	 *opensubwin "D:\Temp",展開先のフォルダを選択してください
+\P ,*setcust _User:temp_exec=*string o,name=%%"ファイル名を入力してください"%%{%%*extract(%n"%%%%X")%%} %%: *execute %n,*pack "!%%1%\%%so"name" %%: %%K"@Q"
+	*opensubwin "D:\Temp",圧縮先のフォルダを選択してください
+\I ,*setcust _User:temp_exec=*execute %n,*pack "!%%1",indiv %%: %%K"@Q"
+	*opensubwin "D:\Temp",個別圧縮先のフォルダを選択してください
+}{% endraw %}
 ```
 
-- \U: サブ窓を使って7-Zipで展開
-- \P: サブ窓を使って7-Zipで圧縮
-- \I: サブ窓を使って7-Zipで個別圧縮
+## やり方
 
-となる。
+キーバインドは以下の通り。
 
+- Shift+U : 展開
+- Shift+P : 圧縮
+- Shift+I : 個別圧縮
+
+例えばhogehogeフォルダをTestフォルダに圧縮したいときは、以下のようになる。
+
+hogehogeフォルダにカーソルを置く or マークする。
+
+![hogehogeにカーソル]({{ "/assets/images/subwin04.png" | relative_url }})
+
+Shift+PでPPc[X]が起動するので、Testフォルダへ移動してShift+Enter。
+
+![サブ窓が起動]({{ "/assets/images/subwin05.png" | relative_url }})
+
+一行編集に圧縮ファイル名を入力してENTER。
+
+![一行編集にファイル名を入力]({{ "/assets/images/subwin06.png" | relative_url }})
