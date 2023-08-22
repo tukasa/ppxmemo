@@ -22,11 +22,11 @@ K_subwin	= {
 
 KC_main    = {
 \U ,*setcust _User:temp_exec=*execute %n,*unpack %%1 %%: %%K"@Q"
-	 *opensubwin "D:\Temp",展開先のフォルダを選択してください
+	 *opensubwin %1,展開先のフォルダを選択してください
 \P ,*setcust _User:temp_exec=*string o,name=%%"ファイル名を入力してください"%%{%%*extract(%n"%%%%X")%%} %%: *execute %n,*pack "!%%1%\%%so"name" %%: %%K"@Q"
-	*opensubwin "D:\Temp",圧縮先のフォルダを選択してください
+	*opensubwin %1,圧縮先のフォルダを選択してください
 \I ,*setcust _User:temp_exec=*execute %n,*pack "!%%1",indiv %%: %%K"@Q"
-	*opensubwin "D:\Temp",個別圧縮先のフォルダを選択してください
+	*opensubwin %1,個別圧縮先のフォルダを選択してください
 }{% endraw %}
 ```
 
