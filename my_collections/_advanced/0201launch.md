@@ -20,9 +20,9 @@ last_modified_at: 2023-08-19
 
 を指定することができる。以下はヘルプに載っている例。
 
-```
-{% raw %}*linemessage {%*input("text" -title:"Input title" -mode:g)}{% endraw %}
-```
+```text{% raw %}
+*linemessage {%*input("text" -title:"Input title" -mode:g)}
+{% endraw %}```
 
 さらに、`-k:"command line" `または`-k command line `により、一行編集開始時に任意のコマンドを実行することができる。特に有用なのが`*completelist`だ。
 
