@@ -1,52 +1,27 @@
 ---
-title: Key Module
+title: PPcで一時コマンド
 part: nストロークキー
 created_at: 2023-01-13
 ---
-Paper Plane xUI Key Moduleをインストールすることで、nストロークキー入力ができるようになる。
 
-## 2ストロークキー入力
+![一時コマンド]({{ "/assets/images/nstrokekey01.png" | relative_url }})
 
-- [C-x a]でaaaaと表示
-- [C-x b]でbbbbと表示
+PPcで以下ができるようにする。
 
-したければ次のようにする。ちなみに[C-x a]は「Ctrl＋Xを押したあと、Aキーを押す」の意味。
+- [C-z z]   コマンドを登録
+- [C-z C-z] 登録したコマンドを実行
 
-```text
-KC_main = { ; PPcメイン窓
-^X ,*setnextkey K_user1
-}
-
-K_user1 = {
-a , echo aaaa
-b , echo bbbb
-}
-```
-
-## 3ストロークキー入力
-
-- [C-x a]でaaaaと表示
-- [C-x b]でbbbbと表示
-- [C-x c a]でhomuと表示
-- [C-x c b]でhomuhomuと表示
-
-したい場合は次のようにする。
+新しいコマンドを試したり、マクロの内容を確認するときに便利。
 
 ```text
-KC_main = { ; PPcメイン窓
-^X ,*setnextkey K_user1
+{% raw %}
+KC_main = {
+^Z ,*setnextkey K_launcher
 }
 
-K_user1 = {
-a , echo aaaa
-b , echo bbbb
-c , *setnextkey K_user2 ; 3ストロークキー入力
+K_launcher = {
+Z ,*setcust _User:temp_cmd = %"一時コマンド"%{%*getcust(_User:temp_cmd)%}
+^Z ,*execute ,%*getcust(_User:temp_cmd)
 }
-
-K_user2 = {
-a , echo homu
-b , echo homuhomu
-}
+{% endraw %}
 ```
-
-同じ要領でキーマップを増やしていけば、４ストロークキー入力、５ストロークキー入力も可能になる。

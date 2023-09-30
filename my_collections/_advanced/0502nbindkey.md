@@ -1,27 +1,24 @@
 ---
-title: PPcで一時コマンド
+title: ppeで2ストロークキー
 part: nストロークキー
-created_at: 2023-01-13
+created_at: 2023-01-24
 ---
+ppeを2ストロークキーにすることもできる。
 
-![一時コマンド]({{ "/assets/images/nstrokekey01.png" | relative_url }})
-
-PPcで以下ができるようにする。
-
-- [C-z z]   コマンドを登録
-- [C-z C-z] 登録したコマンドを実行
-
-新しいコマンドを試したり、マクロの内容を確認するときに便利。
+以下を編集して取込。
 
 ```text
-{% raw %}
-KC_main = {
-^Z ,*setnextkey K_launcher
+K_xyzzy1 = {
+^X ,*setnextkey K_xyzzy2
 }
 
-K_launcher = {
-Z ,*setcust _User:temp_cmd = %"一時コマンド"%{%*getcust(_User:temp_cmd)%}
-^Z ,*execute ,%*getcust(_User:temp_cmd)
+K_xyzzy2 = {
+S ,%K"@^S"
+^C ,%k"&F4"
 }
-{% endraw %}
 ```
+
+`*edit -k *mapkey use,K_xyzzy1`で起動したppeでは、以下の2ストロークキーが使える。
+
+- [C-x s] ファイルを保存
+- [C-x C-c] 閉じる
