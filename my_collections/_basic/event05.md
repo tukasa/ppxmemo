@@ -12,7 +12,7 @@ last_modified_at: 2023-07-17
 - 連動パス・表示パス同期
 
 についてはデフォルトでできるので、これ以外の特殊な連動をPPx内で行うか、あるいは外部アプリケーションとの連動に使うか、ということになるだろう。
-前者の例としては、[反対窓にフォルダ内容を表示]({{ "/advanced/mode04" | relative_url }})や[DockShow]({{ "/basic/module04" | relative_url }})を参考にしてほしい。
+前者の例としては、[反対窓にフォルダ内容を表示]({{ "/advanced/0404mode" | relative_url }})や[DockShow]({{ "/basic/module04" | relative_url }})を参考にしてほしい。
 
 _MassiGraとの連動_
 
