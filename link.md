@@ -8,7 +8,7 @@ permalink: /link/
 - [PPx Customize Articles](https://tar80.github.io/pages-pca/)
 - [PPx - Qiita](https://qiita.com/tags/ppx)
 - [Paper Plane xUI まとめサイト - atwiki（アットウィキ）](https://w.atwiki.jp/wiki6_ppx/)
-- [Paper Plane xUI Part.7](https://egg.5ch.net/test/read.cgi/software/1627228501/l50)
+- [Paper Plane xUI Part.8](https://egg.5ch.net/test/read.cgi/software/1701522183/l50)
 - [PPx カテゴリーの記事一覧 - hokorobi’s diary](https://hokorobi.hatenablog.com/archive/category/PPx)
 - [ppxの記事一覧 Zenn](https://zenn.dev/topics/ppx)
 - [[PPx] の検索結果 - とりとめのない記録帳](https://nakapon.hatenablog.com/search?q=%5BPPx%5D)
