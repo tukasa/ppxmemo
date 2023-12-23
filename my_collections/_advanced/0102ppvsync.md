@@ -38,17 +38,17 @@ HOWM ,*myppv
 }
 
 KV_main	= {	; PPvメイン窓
-UP	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@UP" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+UP	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@UP" %: *cd %0 %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
 	%K"@UP"
-DOWN	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@DOWN" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+DOWN	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@DOWN" %: *cd %0 %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
 	%K"@DOWN"
-LEFT	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@LEFT" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+LEFT	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@LEFT" %: *cd %0 %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
 	%K"@LEFT"
-RIGHT	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@RIGHT" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+RIGHT	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@RIGHT" %: *cd %0 %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
 	%K"@RIGHT"
-SPACE    ,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@SPACE" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+SPACE	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@SPACE" %: *cd %0 %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
 	%K"@SPACE"
-\SPACE    ,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@\SPACE" %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
+\SPACE	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@\SPACE" %: *cd %0 %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
 	%K"@\SPACE"
 CLOSEEVENT    ,*ifmatch !0,0%si"ppcid" %: *focus C%si"ppcid" %: *stop
 }
