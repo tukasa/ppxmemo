@@ -1,5 +1,5 @@
 ---
-title: Key Module
+title: Key Moduleでnストロークキー入力
 part: module
 created_at: 2023-01-13
 ---
