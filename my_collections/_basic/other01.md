@@ -2,7 +2,7 @@
 title: 一行編集ウィンドウ
 part: その他
 created_at: 2023-07-10
-last_modified_at: 
+last_modified_at: 2024-03-05
 ---
 
 PPxでは、一行編集ウィンドウを表示し、そこに打ち込んだテキストを利用することができる。例えば
@@ -26,6 +26,8 @@ PPxでは、一行編集ウィンドウを表示し、そこに打ち込んだ�
 ```
 
 ![空欄]({{ "/assets/images/other02.png" | relative_url }})
+
+---
 
 ## あらかじめテキストを挿入
 
@@ -54,6 +56,7 @@ PPxでは、一行編集ウィンドウを表示し、そこに打ち込んだ�
 
 ![選択位置指定]({{ "/assets/images/other05.png" | relative_url }})
 
+---
 
 ## 展開したマクロ文字を挿入
 
@@ -64,6 +67,8 @@ PPxでは、一行編集ウィンドウを表示し、そこに打ち込んだ�
 ```
 
 ![展開したマクロ文字を挿入]({{ "/assets/images/other06.png" | relative_url }})
+
+---
 
 ## キャッシュ付き部分編集
 
@@ -78,6 +83,8 @@ PPxでは、一行編集ウィンドウを表示し、そこに打ち込んだ�
 {% raw %}*makefile %${%|.txt%} %: %Ob editor %${%|.txt%}{% endraw %}
 ```
 
+---
+
 ## その他
 
 ### ウィンドウタイトルの編集
@@ -90,3 +97,39 @@ PPxでは、一行編集ウィンドウを表示し、そこに打ち込んだ�
 
 ![windowtitle]({{ "/assets/images/other07.png" | relative_url }})
 
+---
+
+## %*input
+
+![一行編集]({{ "/assets/images/launch01.png" | relative_url }})
+
+一行編集でさらに高度なことを行いたいときには、`%*input`を使う。`%*input`を使うと、
+
+- タイトル
+- 編集するテキスト
+- カーソル位置
+- ダイアログ種類、ヒストリ種類、参照の動作
+
+を指定することができる。以下はヘルプに載っている例。
+
+```text{% raw %}
+*linemessage {%*input("text" -title:"Input title" -mode:g)}
+{% endraw %}```
+
+さらに、`-k:"command line" `または`-k command line `により、一行編集開始時に任意のコマンドを実行することができる。特に`*completelist`が有用だ。
+
+### 補完候補ファイル
+
+`*completelist`の`-file`オプションを使うと、任意の補完候補ファイルを指定することができる。
+
+```text
+*linemessage %*input("" -mode:h -k:"*completelist -file:%%0launch.txt")
+```
+
+### 一覧内容の詳細な指定
+
+`*completelist`の`-detail`オプションを使うと、補完一覧の内容を、その並び順も含めて指定することができる。
+
+```text
+*linemessage %*input("" -mode:h -k:"*completelist -detail:""hist alias"" ")
+```
