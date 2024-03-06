@@ -1,113 +1,38 @@
 ---
-title: PPv
+title: PPe
 part: その他
-created_at: 2023-07-28
+created_at: 2023-12-26
 last_modified_at: 
 ---
 
-PPvは、テキスト/画像/16進ダンプと表示形式を切り換えて見ることができるマルチフォーマットビューア。
-カスタマイズにおいて、大きく以下の2つのテーマがある。
+PPeは簡易テキストエディタ。起動が早いので、ちょっとしたテキストの修正に便利。
 
-- 表示形態
-- 連動ビューの方法
+## 前回閉じた位置を再現
 
-## 表示形態
-
-以下のように分けることができる。
-
-- 単独で表示
-- PPcに重ねて表示
-- PPcに被せて表示
-- PPcに組み込んで表示
-
-### 単独で表示
-
-![PPv単独表示]({{ "/assets/images/aboutppv01.png" | relative_url }})
-
-他の窓とは無関係にPPvを起動する。デフォルトではこの形態になってるはずなので、これでよければ何もする必要はない。
-
-### PPcに重ねて表示
-
-![PPcに重ねて表示]({{ "/assets/images/aboutppv02.png" | relative_url }})
-
-PPvをPPcに重ねて表示する。
-%vやPPcの[N]、[Y]でPPvを呼び出すのであれば、X_vposで設定するといい。
+[^W]で、現在の位置と大きさを保存したあと閉じる。次回起動時は、前回の位置と大きさが再現される。
 
 ```text
-X_vpos	= 0	; PPcからの呼出時の表示位置 0:独立 1:PPc 2:反対窓 3:一体化窓
+_Command	= {	; ユーザコマンド・関数
+savepos	= *setcust %*arg(1):l=%*windowrect(,l)
+ *setcust %*arg(1):t=%*windowrect(,t)
+ *setcust %*arg(1):w=%*windowrect(,w)
+ *setcust %*arg(1):h=%*windowrect(,h)
+loadpos	= *string o,fuga=%*arg(1)
+ *windowposition %N.,%*getcust(%so"fuga":l),%*getcust(%so"fuga":t),%*getcust(%so"fuga":w),%*getcust(%so"fuga":h)
+}
+
+K_ppe	= {	; PPe(K_ppeに該当しない場合はK_edit参照)
+^W	,*savepos S_ppepos %: %k"&F4"
+FIRSTEVENT	,*loadpos S_ppepos
+}
 ```
 
-*ppvを用いる場合は、`-setparent:%N`を指定しないと、この設定が機能しないので注意。
-他には、window moduleの`*fitwindow`でも同じことができる。
+## PPVからPPeを開いた際、現在行へジャンプする
 
-_現在窓PPcに重ねて表示_
+キャレットモード時に[E]でPPeを開き、現在行にジャンプする。
+
 ```text
-*ppv %FCD -k *fitwindow %NC,%%N,0
+KV_crt	= {	; PPvテキスト(キャレット)追加設定
+E	,*edit %FCD -k *cursor -17, 0, %%L
+}
 ```
-
-_反対窓PPcに重ねて表示_
-```text
-*ppv %FCD -k *fitwindow %~N,%%N,0
-```
-
-_一体化PPcに重ねて表示_
-```text
-*ppv %FCD -k *fitwindow %NC#,%%N,0
-```
-
-### PPcに被せて表示
-
-![PPcに被せて表示]({{ "/assets/images/aboutppv03.png" | relative_url }})
-
-PPcに被せて表示する。「PPcに重ねて表示」とは違い、タイトルバーは表示されない。
-
-_現在窓PPcに被せて表示_
-```text
-*ppv -popup:%NC %FDC
-```
-
-_反対窓PPcに被せて表示_
-```text
-*ppv -popup:%~N %FDC
-```
-
-_一体化PPcに被せて表示_
-```text
-*ppv -popup:%NC# %FDC
-```
-
-### PPcに組み込んで表示
-
-![PPcに組み込んで表示]({{ "/assets/images/aboutppv04.png" | relative_url }})
-
-PPcに組み込んで表示する。PPcの窓位置を移動した場合、PPvもそれに追随する。ただし、チラつきが生じるという欠点がある。
-
-_現在窓PPcに埋め込んで表示_
-```text
-*ppv -parent:%NC %FDC
-```
-
-_反対窓PPcに埋め込んで表示_
-```text
-*ppv -parent:%~N %FDC
-```
-
-## 連動ビューの方法
-
-大きくは以下の2つの場合がありうる。
-
-- PPc中心
-- PPv中心
-
-### PPc中心
-
-![PPc中心連動ビュー]({{ "/assets/images/aboutppv05.gif" | relative_url }})
-
-PPc上で\\[Y]で連動ビューになる。PPcでカーソルを動かすと、それにあわせてPPvの表示ファイルも切り替わる。
-
-### PPv中心
-
-![PPv中心連動ビュー]({{ "/assets/images/aboutppv06.gif" | relative_url }})
-
-%vやPPcの[N]、[Y]でPPvを呼び出した場合、PPv上で^[←] ^[→]で連動ビューができる。呼び出し元PPcのカーソルが移動した後、カーソル上のファイルがPPvで表示される。
-*ppvで呼び出した場合は、呼び出し元PPcの情報がPPvに伝わらないため、この機能は使えない。"-setparent:%N"により、呼び出し元PPcを指定する必要がある。
