@@ -27,6 +27,8 @@ FIRSTEVENT	,*loadpos S_ppepos
 }
 ```
 
+---
+
 ## PPVからPPeを開いた際、現在行へジャンプする
 
 キャレットモード時に[E]でPPeを開き、現在行にジャンプする。
