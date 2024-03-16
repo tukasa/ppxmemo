@@ -2,7 +2,7 @@
 title: コピー・移動
 part: サブ窓
 created_at: 2023-01-13
-last_modified_at: 2023-08-23
+last_modified_at: 2024-03-17
 ---
 
 コピー先・移動先のフォルダをサブ窓を使って指定できるようにする。
@@ -24,9 +24,11 @@ K_subwin	= {
 
 KC_main    = {
 \M ,*setcust _User:temp_exec=*file !move ,%%*extract(%n"%%%%@*8FCDN"),%%1 %%: %%K"@Q"
-	*opensubwin %1,移動先のフォルダを選択してください
+	*ifmatch "o:e,a:d",%FD %: *opensubwin %FD,移動先のフォルダを選択してください %: *stop
+	*opensubwin %0,移動先のフォルダを選択してください
 \C ,*setcust _User:temp_exec=*file !copy ,%%*extract(%n"%%%%@*8FCDN"),%%1 %%: %%K"@Q"
-	*opensubwin %1,コピー先のフォルダを選択してください
+	*ifmatch "o:e,a:d",%FD %: *opensubwin %FD,コピー先のフォルダを選択してください %: *stop
+	*opensubwin %0,コピー先のフォルダを選択してください
 }
 ```
 

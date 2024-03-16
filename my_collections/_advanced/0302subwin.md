@@ -2,7 +2,7 @@
 title: 展開・圧縮
 part: サブ窓
 created_at: 2023-01-13
-last_modified_at: 2023-08-23
+last_modified_at: 2024-03-17
 ---
 
 展開・圧縮をサブ窓を使ってできるようにする。
@@ -22,11 +22,14 @@ K_subwin	= {
 
 KC_main    = {
 \U ,*setcust _User:temp_exec=*execute %n,*unpack %%1 %%: %%K"@Q"
-	 *opensubwin %1,展開先のフォルダを選択してください
+	*ifmatch "o:e,a:d",%FD %: *opensubwin %FD,展開先のフォルダを選択してください %: *stop
+	*opensubwin %0,展開先のフォルダを選択してください
 \P ,*setcust _User:temp_exec=*string o,name=%%"ファイル名を入力してください"%%{%%*extract(%n"%%%%X")%%} %%: *execute %n,*pack "!%%1%\%%so"name" %%: %%K"@Q"
-	*opensubwin %1,圧縮先のフォルダを選択してください
+	*ifmatch "o:e,a:d",%FD %: *opensubwin %FD,圧縮先のフォルダを選択してください %: *stop
+	*opensubwin %0,圧縮先のフォルダを選択してください
 \I ,*setcust _User:temp_exec=*execute %n,*pack "!%%1",indiv %%: %%K"@Q"
-	*opensubwin %1,個別圧縮先のフォルダを選択してください
+	*ifmatch "o:e,a:d",%FD %: *opensubwin %FD,個別圧縮先のフォルダを選択してください %: *stop
+	*opensubwin %0,個別圧縮先のフォルダを選択してください
 }{% endraw %}
 ```
 
