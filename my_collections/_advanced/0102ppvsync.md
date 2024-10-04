@@ -2,7 +2,7 @@
 title: 一対一対応
 part: PPv中心の連動ビュー
 created_at: 2023-01-13
-last_modified_at: 2023-08-19
+last_modified_at: 2024-10-04
 ---
 
 複数のPPcを開いている際、基本編だと意図しない動作になることがある。そこで、PPcとPPvを一対一対応させ、以下のように動作させる。
@@ -38,18 +38,24 @@ HOWM ,*myppv
 }
 
 KV_main	= {	; PPvメイン窓
-UP	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@UP" %: *cd %0 %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
-	%K"@UP"
-DOWN	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@DOWN" %: *cd %0 %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
-	%K"@DOWN"
-LEFT	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@LEFT" %: *cd %0 %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
-	%K"@LEFT"
-RIGHT	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@RIGHT" %: *cd %0 %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
-	%K"@RIGHT"
-SPACE	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@SPACE" %: *cd %0 %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
-	%K"@SPACE"
-\SPACE	,*ifmatch !0,0%si"ppcid" %: *execute C%si"ppcid",%%K"@\SPACE" %: *cd %0 %: *ppv -bootid:%*rightstr("%n", 1) -r %*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)") %: *stop
-	%K"@\SPACE"
+UP	,*ifmatch 0,0%si"ppcid" %: %K"@UP" %: *stop
+	*execute C%si"ppcid",%%K"@UP"
+	%J%*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)")
+DOWN	,*ifmatch 0,0%si"ppcid" %: %K"@DOWN" %: *stop
+	*execute C%si"ppcid",%%K"@DOWN"
+	%J%*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)")
+LEFT	,*ifmatch 0,0%si"ppcid" %: %K"@LEFT" %: *stop
+	*execute C%si"ppcid",%%K"@LEFT"
+	%J%*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)")
+RIGHT	,*ifmatch 0,0%si"ppcid" %: %K"@RIGHT" %: *stop
+	*execute C%si"ppcid",%%K"@RIGHT"
+	%J%*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)")
+SPACE	,*ifmatch 0,0%si"ppcid" %: %K"@SPACE" %: *stop
+	*execute C%si"ppcid",%%K"@SPACE"
+	%J%*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)")
+\SPACE	,*ifmatch 0,0%si"ppcid" %: %K"@\SPACE" %: *stop
+	*execute C%si"ppcid",%%K"@\SPACE"
+	%J%*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)")
 CLOSEEVENT    ,*ifmatch !0,0%si"ppcid" %: *focus C%si"ppcid" %: *stop
 }
 
