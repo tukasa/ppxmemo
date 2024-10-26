@@ -1,5 +1,5 @@
 ---
-title: Script Module
+title: WSH Script Module
 part: module
 created_at: 2022-03-31
 last_modified_at: 2023-06-01

@@ -22,7 +22,7 @@ Paper Plane xUI (PPx) のカスタマイズについて
     - Message Module
     - Window Module
     - Text Module
-    - Script Module
+    - WSH Script Module
     - Key Module
 - 外部ライブラリ
     - migemo [KaoriYa](https://www.kaoriya.net/software/cmigemo/)
