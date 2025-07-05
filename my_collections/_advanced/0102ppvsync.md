@@ -56,6 +56,7 @@ SPACE	,*ifmatch 0,0%si"ppcid" %: %K"@SPACE" %: *stop
 \SPACE	,*ifmatch 0,0%si"ppcid" %: %K"@\SPACE" %: *stop
 	*execute C%si"ppcid",%%K"@\SPACE"
 	%J%*extract(C%si"ppcid""%(%*name(CD,"%R","%1")%)")
+ENTER	= @Q
 CLOSEEVENT    ,*ifmatch !0,0%si"ppcid" %: *focus C%si"ppcid" %: *stop
 }
 

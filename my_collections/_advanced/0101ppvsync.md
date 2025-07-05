@@ -40,6 +40,7 @@ LEFT	,%KC"@LEFT @N"
 RIGHT	,%KC"@RIGHT @N"
 SPACE    ,%KC"@SPACE @N"
 \SPACE    ,%KC"@\SPACE @N"
+ENTER	= @Q
 }
 ```
 
